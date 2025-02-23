@@ -1,9 +1,11 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.NPCs.Perforator;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Buffs.Souls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Projectiles.Masomode;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -17,8 +19,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
 {
     public class PerfExplosion : ModProjectile
     {
-        public override string Texture => "FargowiltasSouls/Content/Projectiles/GlowRingHollow";
-        public const int Duration = 20;
+        public ref float Owner => ref Projectile.ai[0];
+        public override string Texture => "CalamityMod/Particles/HollowCircleHardEdge";
+        public int Duration = 20;
         public const int BaseRadius = 80;
         public override void SetDefaults()
         {
@@ -52,11 +55,24 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         }
         public override void AI()
         {
+            if (Projectile.damage <= 0f && Projectile.localAI[2] == 0)
+            {
+                Projectile.localAI[2] = 1;
+                Projectile.timeLeft *= 2;
+                Duration *= 2;
+            }
             Projectile.position = Projectile.Center;
             float scaleModifier = 2f;
             Projectile.scale += scaleModifier * 5f / Duration;
             Projectile.width = Projectile.height = (int)(BaseRadius * Projectile.scale);
             Projectile.Center = Projectile.position;
+
+            if (((int)Owner).IsWithinBounds(Main.maxNPCs))
+            {
+                NPC owner = Main.npc[(int)Owner];
+                if (owner != null && owner.TypeAlive<PerforatorHive>())
+                    Projectile.Center = owner.Center;
+            }
 
             if (Projectile.timeLeft < 8)
                 Projectile.Opacity -= 0.15f;
@@ -64,6 +80,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         public override bool ShouldUpdatePosition() => false;
         public override bool PreDraw(ref Color lightColor)
         {
+            Main.spriteBatch.UseBlendState(BlendState.Additive);
+
             if (Projectile.damage <= 0f && Projectile.Opacity > 0.4f)
                 Projectile.Opacity = 0.4f;
 
@@ -79,6 +97,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
             SpriteEffects spriteEffects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             Main.EntitySpriteDraw(texture, drawPos - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), rectangle, Projectile.GetAlpha(lightColor),
                     rotation, origin, Projectile.scale * scaleModifier, spriteEffects, 0);
+
+            Main.spriteBatch.ResetToDefault();
             return false;
         }
         public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
