@@ -223,10 +223,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 {
                     ModContent.GetInstance<Nanotech>().UpdateAccessory(player, hideVisual);
                 }
-                if (player.AddEffect<EclipseMirrorEffect>(item))
-                {
-                    ModContent.GetInstance<EclipseMirror>().UpdateAccessory(player, hideVisual);
-                }
             }
 
             // toggles to Cal accs
@@ -235,12 +231,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 player.AddEffect<RampartofDeitiesEffect>(item);
                 if (!player.HasEffect<RampartofDeitiesEffect>())
                     calPlayer.rampartOfDeities = false;
-                player.AddEffect<DefenseStarEffect>(item);
-                if (!player.HasEffect<DefenseStarEffect>())
-                    player.starCloakItem = null;
-                player.AddEffect<FrozenTurtleEffect>(item);
-                if (!player.HasEffect<FrozenTurtleEffect>())
-                    player.ClearBuff(BuffID.IceBarrier);
+                //player.AddEffect<DefenseStarEffect>(item);
+                //if (!player.HasEffect<DefenseStarEffect>())
+                //    player.starCloakItem = null;
+                //player.AddEffect<FrozenTurtleEffect>(item);
+                //if (!player.HasEffect<FrozenTurtleEffect>())
+                //    player.ClearBuff(BuffID.IceBarrier);
 
 
             }

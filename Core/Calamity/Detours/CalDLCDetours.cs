@@ -150,7 +150,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             player.SetToggleValue<AerospecJumpEffect>(true);
 
             player.SetToggleValue<NanotechEffect>(true);
-            player.SetToggleValue<EclipseMirrorEffect>(true);
             player.SetToggleValue<AbyssalDivingSuitEffect>(true);
             player.SetToggleValue<NucleogenesisEffect>(true);
             player.SetToggleValue<ElementalQuiverEffect>(true);

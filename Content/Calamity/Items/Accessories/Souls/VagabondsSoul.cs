@@ -26,16 +26,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls
             {
                 ModContent.GetInstance<Nanotech>().UpdateAccessory(player, hideVisual);
             }
-            if (player.AddEffect<EclipseMirrorEffect>(Item))
-            {
-                ModContent.GetInstance<EclipseMirror>().UpdateAccessory(player, hideVisual);
-            }
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<RogueEmblem>()
-                .AddIngredient<EclipseMirror>()
                 .AddIngredient<Nanotech>()
 
                 .AddIngredient<Valediction>()
@@ -53,11 +47,5 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls
     public class NanotechEffect : UniverseEffect
     {
         public override int ToggleItemType => ModContent.ItemType<Nanotech>();
-    }
-    [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
-    [ExtendsFromMod(ModCompatibility.Calamity.Name)]
-    public class EclipseMirrorEffect : UniverseEffect
-    {
-        public override int ToggleItemType => ModContent.ItemType<EclipseMirror>();
     }
 }
