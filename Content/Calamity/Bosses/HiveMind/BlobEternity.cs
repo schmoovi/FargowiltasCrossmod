@@ -46,7 +46,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 NPC owner = Main.npc[hiveMind];
                 if (owner.GetDLCBehavior<HMEternity>().Phase < 2)
                 {
-                    healthMult *= 10;
+                    healthMult *= 6;
                     NPC.scale = 1.5f;
                 }
             }
