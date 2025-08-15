@@ -59,7 +59,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
             }
             else
             {
-                NPC.lifeMax = (int)Math.Round(NPC.lifeMax * 1.175f);
+                NPC.lifeMax = (int)Math.Round(NPC.lifeMax * 1.15f);
             }
             NPC.damage = 60;
         }

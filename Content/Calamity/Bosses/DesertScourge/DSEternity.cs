@@ -128,7 +128,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             {
                 return false;
             }
-
+            /* nuisance phase
             if (NPC.GetLifePercent() < 0.5f && (NPC.localAI[2] == 0))
                 return true;
             if (NPC.GetLifePercent() < 0.5f && (NPC.AnyNPCs(ModContent.NPCType<DesertNuisanceHead>()) || NPC.AnyNPCs(ModContent.NPCType<DesertNuisanceHeadYoung>()))) // Nuisance phase
@@ -175,6 +175,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
 
                 return false;
             }
+            */
             
             if (NPC.localAI[2] == 0f)
                 NPC.localAI[2] = 2f; // Cannot summon nuisances unless otherwise specified
@@ -1010,10 +1011,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
             NullCoiledDamage(modifiers);
             if (projectile.type == ProjectileID.SporeCloud)
             {
-                modifiers.FinalDamage.Base = 1;
+                modifiers.FinalDamage /= 3;
             }
-            if (projectile.maxPenetrate > 1 || projectile.maxPenetrate < 0)
-                modifiers.FinalDamage *= 0.5f;
             DestroyerSegment.PierceResistance(projectile, ref modifiers);
         }
         public override bool PreAI()
@@ -1023,21 +1022,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.DesertScourge
         }
         public override void PostAI()
         {
-            if (NPC.AnyNPCs(ModContent.NPCType<DesertNuisanceHead>()))
-            {
-                NPC.defense = 30;
-            }
-            else
-            {
-                NPC.defense = 10;
-            }
+            
         }
         public override void UpdateLifeRegen(ref int damage)
         {
-            if (NPC.lifeRegen < 0)
-            {
-                NPC.lifeRegen = (int)Math.Round(NPC.lifeRegen / 4f);
-            }
+            if (NPC.lifeRegen >= 0)
+                return;
+            NPC.lifeRegen /= 2;
+            damage /= 2;
         }
     }
 }
