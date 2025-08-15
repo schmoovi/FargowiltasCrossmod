@@ -6,6 +6,7 @@ using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Enums;
 using CalamityMod.Events;
+using CalamityMod.Items.SummonItems;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.DraedonsArsenal;
 using CalamityMod.Items.Weapons.Melee;
@@ -159,39 +160,39 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                 return;
             #region summons
             Mod mutant = ModLoader.GetMod("Fargowiltas");
-            mutant.Call("AddSummon", 1.5f, "FargowiltasCrossmod", "MedallionoftheDesert",
+            mutant.Call("AddSummon", 1.5f, "CalamityMod", "DesertMedallion",
                 () => DownedDS, Item.buyPrice(gold: 6));
-            mutant.Call("AddSummon", 2.5f, "FargowiltasCrossmod", "OphiocordycipitaceaeSprout",
+            mutant.Call("AddSummon", 2.5f, "CalamityMod", "DecapoditaSprout",
                 () => DownedCrab, Item.buyPrice(gold: 9));
-            mutant.Call("AddSummon", 3.5f, "FargowiltasCrossmod", "HiveTumor",
+            mutant.Call("AddSummon", 3.5f, "CalamityMod", "Teratoma",
                 () => DownedHM, Item.buyPrice(gold: 11));
-            mutant.Call("AddSummon", 3.5f, "FargowiltasCrossmod", "RedStainedWormFood",
+            mutant.Call("AddSummon", 3.5f, "CalamityMod", "BloodyWormFood",
                 () => DownedPerf, Item.buyPrice(gold: 11));
-            mutant.Call("AddSummon", 6.5f, "FargowiltasCrossmod", "MurkySludge",
+            mutant.Call("AddSummon", 6.5f, "CalamityMod", "OverloadedSludge",
                 () => DownedSG, Item.buyPrice(gold: 17));
-            mutant.Call("AddSummon", 8.5f, "FargowiltasCrossmod", "CryingKey",
+            mutant.Call("AddSummon", 8.5f, "CalamityMod", "CryoKey",
                 () => DownedCryo, Item.buyPrice(gold: 30));
-            mutant.Call("AddSummon", 9.5f, "FargowiltasCrossmod", "SeeFood",
+            mutant.Call("AddSummon", 9.5f, "CalamityMod", "SeaFood",
                 () => DownedAS, Item.buyPrice(gold: 40));
-            mutant.Call("AddSummon", 10.5f, "FargowiltasCrossmod", "FriedDoll",
+            mutant.Call("AddSummon", 10.5f, "CalamityMod", "CharredIdol",
                 () => DownedBE, Item.buyPrice(gold: 40));
-            mutant.Call("AddSummon", 11.5f, "FargowiltasCrossmod", "BlightedEye",
+            mutant.Call("AddSummon", 11.5f, "CalamityMod", "EyeofDesolation",
                 () => DownedCalClone, Item.buyPrice(gold: 45));
             mutant.Call("AddSummon", 12.5f, "FargowiltasCrossmod", "SirensPearl",
                 () => DownedLevi, Item.buyPrice(gold: 55));
-            mutant.Call("AddSummon", 12.75f, "FargowiltasCrossmod", "ChunkyStardust",
+            mutant.Call("AddSummon", 12.75f, "CalamityMod", "AstralChunk",
                 () => DownedAA, Item.buyPrice(gold: 55));
-            mutant.Call("AddSummon", 13.5f, "FargowiltasCrossmod", "ABombInMyNation",
+            mutant.Call("AddSummon", 13.5f, "CalamityMod", "Abombination",
                 () => DownedPBG, Item.buyPrice(gold: 60));
-            mutant.Call("AddSummon", 13.75f, "FargowiltasCrossmod", "NoisyWhistle",
+            mutant.Call("AddSummon", 13.75f, "CalamityMod", "DeathWhistle",
                 () => DownedRav, Item.buyPrice(gold: 60));
             mutant.Call("AddSummon", 17.5f, "FargowiltasCrossmod", "AstrumCor",
                 () => DownedDeus, Item.buyPrice(gold: 85));
-            mutant.Call("AddSummon", 18.006f, "FargowiltasCrossmod", "BirbPheromones",
+            mutant.Call("AddSummon", 18.006f, "CalamityMod", "ExoticPheromones",
                 () => DownedFuck, Item.buyPrice(platinum: 1, gold: 10));
-            mutant.Call("AddSummon", 18.007f, "FargowiltasCrossmod", "DefiledShard",
+            mutant.Call("AddSummon", 18.007f, "CalamityMod", "ProfanedShard",
                 () => DownedGuards, Item.buyPrice(platinum: 1, gold: 10));
-            mutant.Call("AddSummon", 18.008f, "FargowiltasCrossmod", "DefiledCore",
+            mutant.Call("AddSummon", 18.008f, "CalamityMod", "ProfanedCore",
                 () => DownedProvi, Item.buyPrice(platinum: 1, gold: 20));
             mutant.Call("AddSummon", 18.0091f, "FargowiltasCrossmod", "RiftofKos",
                 () => DownedCV, Item.buyPrice(platinum: 1, gold: 30));
@@ -199,13 +200,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                 () => DownedSW, Item.buyPrice(platinum: 1, gold: 30));
             mutant.Call("AddSummon", 18.0093f, "FargowiltasCrossmod", "LetterofKos",
                 () => DownedSignus, Item.buyPrice(platinum: 1, gold: 30));
-            mutant.Call("AddSummon", 18.0094f, "FargowiltasCrossmod", "PolterplasmicBeacon",
+            mutant.Call("AddSummon", 18.0094f, "CalamityMod", "NecroplasmicBeacon",
                 () => DownedPolter, Item.buyPrice(platinum: 1, gold: 40));
             mutant.Call("AddSummon", 18.0095f, "FargowiltasCrossmod", "BloodyWorm",
                 () => DownedOD, Item.buyPrice(platinum: 1, gold: 40));
-            mutant.Call("AddSummon", 18.0096f, "FargowiltasCrossmod", "SomeKindofSpaceWorm",
+            mutant.Call("AddSummon", 18.0096f, "CalamityMod", "CosmicWorm",
                 () => DownedDoG, Item.buyPrice(platinum: 2));
-            mutant.Call("AddSummon", 18.0097f, "FargowiltasCrossmod", "DragonEgg",
+            mutant.Call("AddSummon", 18.0097f, "CalamityMod", "YharonEgg",
                 () => DownedYharon, Item.buyPrice(platinum: 2, gold: 50));
             mutant.Call("AddSummon", 18.012f, "FargowiltasCrossmod", "PortableCodebreaker",
                 () => DownedExos, Item.buyPrice(platinum: 3));

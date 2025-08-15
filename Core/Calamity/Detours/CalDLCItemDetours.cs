@@ -37,6 +37,7 @@ using FargowiltasSouls.Content.Items;
 using CalamityMod.Items.Potions;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Content.Items.Accessories.Eternity;
+using CalamityMod.Items.SummonItems;
 
 namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
@@ -49,8 +50,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
 
         public override void Load()
         {
-
+            On_Player.ItemCheck_CheckCanUse += AllowUseCalBossSummons;
         }
+
+        private bool AllowUseCalBossSummons(On_Player.orig_ItemCheck_CheckCanUse orig, Player self, Item sItem)
+        {
+            if (CalDLCSets.Items.CalBossSummon[ sItem.type] && Fargowiltas.Common.Configs.FargoServerConfig.Instance.EasySummons)
+            {
+                return true;
+            }
+            return orig(self, sItem);
+        }
+
         void ICustomDetourProvider.ModifyMethods()
         {
             HookHelper.ModifyMethodWithDetour(TungstenIncreaseWeaponSizeMethod, TungstenIncreaseWeaponSize_Detour);

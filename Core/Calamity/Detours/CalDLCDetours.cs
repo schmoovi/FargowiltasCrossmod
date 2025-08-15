@@ -112,9 +112,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
 
             HookHelper.ModifyMethodWithDetour(DetermineDrawEligibility_Method, DetermineDrawEligibility_Detour);
 
-            HookHelper.ModifyMethodWithDetour(DropSummon_Int_Method, DropSummon_Int_Detour);
-            HookHelper.ModifyMethodWithDetour(DropSummon_String_Method, DropSummon_String_Detour);
-
             HookHelper.ModifyMethodWithDetour(GetBestClassDamage_Method, GetBestClassDamage_Detour);
 
             HookHelper.ModifyMethodWithDetour(FargoSoulsUtil_HighestDamageTypeScaling_Method, HighestDamageTypeScaling_Detour);
@@ -270,19 +267,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
                 Filters.Scene["CalamityMod:BossRush"].Deactivate(new object[0]);
             return false;
         }
-        private static readonly MethodInfo DropSummon_Int_Method = typeof(EModeUtils).GetMethod("DropSummon", LumUtils.UniversalBindingFlags, [typeof(NPC), typeof(int), typeof(bool), typeof(bool).MakeByRefType(), typeof(bool)]);
-        public delegate void Orig_DropSummon_Int_Method(NPC npc, int itemType, bool downed, ref bool droppedSummon, bool prerequisite = true);
-        internal static void DropSummon_Int_Detour(Orig_DropSummon_Int_Method orig, NPC npc, int itemType, bool downed, ref bool dropped, bool prerequisite = true)
-        {
-            return;
-        }
-        public delegate void Orig_DropSummon_String_Method(NPC npc, string itemName, bool downed, ref bool droppedSummon, bool prerequisite = true);
-        private static readonly MethodInfo DropSummon_String_Method = typeof(EModeUtils).GetMethod("DropSummon", LumUtils.UniversalBindingFlags, [typeof(NPC), typeof(string), typeof(bool), typeof(bool).MakeByRefType(), typeof(bool)]);
-        internal static void DropSummon_String_Detour(Orig_DropSummon_String_Method orig, NPC npc, string itemType, bool downed, ref bool dropped, bool prerequisite = true)
-        {
-            return;
-        }
-
 
         private static readonly MethodInfo GetBestClassDamage_Method = typeof(CalamityUtils).GetMethod("GetBestClassDamage", LumUtils.UniversalBindingFlags);
         public delegate StatModifier Orig_GetBestClassDamage(Player player);

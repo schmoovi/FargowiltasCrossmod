@@ -38,27 +38,6 @@ namespace FargowiltasCrossmod.Core.Common
             }
             return target;
         }
-        //copy psated from fargo but changed so it can be from any mod
-        public static void DropSummon(NPC npc, string mod, string itemName, bool downed, ref bool droppedSummonFlag, bool prerequisite = true)
-        {
-            if (WorldSavingSystem.EternityMode && prerequisite && !downed && Main.netMode != NetmodeID.MultiplayerClient && npc.HasPlayerTarget && !droppedSummonFlag)
-            {
-                Player player = Main.player[npc.target];
-                if (ModContent.TryFind(mod, itemName, out ModItem modItem))
-                {
-                    if (!CalDLCWorldSavingSystem.DroppedSummon.Contains(npc.type))
-                    {
-                        if (!Main.LocalPlayer.InventoryHas(modItem.Type))
-                        {
-                            CalDLCWorldSavingSystem.DroppedSummon.Add(npc.type);
-                            Item.NewItem(npc.GetSource_Loot(), player.Hitbox, modItem.Type);
-                            droppedSummonFlag = true;
-                        }
-                    }
-                }
-
-            }
-        }
         /// <summary>
         /// Draws a backglow effect
         /// </summary>

@@ -74,6 +74,8 @@ namespace FargowiltasCrossmod.Core.Calamity
             /// Items for which emode changes should be explicitly disabled. Exists to remove conflicts with Calamity item changes for the same item.
             /// </summary>
             public static bool[] DisabledEmodeChanges; 
+
+            
         }
         public class NPCs
         {
