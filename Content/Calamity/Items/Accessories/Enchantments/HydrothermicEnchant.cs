@@ -96,7 +96,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public static int BaseDamage(Player player)
         {
             bool force = player.ForceEffect<HydrothermicEffect>();
-            int flareDamage = force ? 300 : 200;
+            int flareDamage = force ? 240 : 120;
             if (player.HasEffect<ElementsForceEffect>())
                 flareDamage = 600;
             return FargoSoulsUtil.HighestDamageTypeScaling(player, flareDamage);
@@ -116,7 +116,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             float heatLevel = dlc.HydrothermicHeat / MaxHeat;
             if (player.HasEffectEnchant<HydrothermicEffect>())
             {
-                player.endurance += (force ? 0.45f : 0.3f) * heatLevel;
+                player.endurance += (force ? 0.3f : 0.2f) * heatLevel;
             }
                 
             if (dlc.HydrothermicOverheat)

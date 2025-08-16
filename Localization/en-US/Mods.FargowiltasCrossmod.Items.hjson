@@ -391,7 +391,7 @@ HydrothermicEnchant: {
 	Tooltip:
 		'''
 		Attacking builds up heat
-		At full heat, stop attacking to vent it, increasing damage reduction by up to 30% and firing chaos flares towards your cursor for up to 3 seconds
+		At full heat, stop attacking to vent it, increasing damage reduction by up to 20% and firing chaos flares towards your cursor for up to 3 seconds
 		Getting hit also vents heat, regardless of heat level
 		'''
 }
