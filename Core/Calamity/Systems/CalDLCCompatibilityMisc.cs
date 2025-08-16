@@ -329,7 +329,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<MutantNibbleBuff>());
             CalamityLists.debuffList.Add(BuffType<NanoInjectionBuff>());
             CalamityLists.debuffList.Add(BuffType<NeurotoxinBuff>());
-            CalamityLists.debuffList.Add(BuffType<NullificationCurseBuff>());
             CalamityLists.debuffList.Add(BuffType<OceanicMaulBuff>());
             CalamityLists.debuffList.Add(BuffType<OiledBuff>());
             CalamityLists.debuffList.Add(BuffType<ReverseManaFlowBuff>());

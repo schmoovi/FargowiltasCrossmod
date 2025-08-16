@@ -318,20 +318,16 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         internal static bool MoonLordIsProjectileValid_Detour(Orig_MoonLordIsProjectileValid orig, MoonLord self, NPC npc, Projectile projectile)
         {
             bool ret = orig(self, npc, projectile);
-            if (!Main.player[projectile.owner].buffImmune[ModContent.BuffType<NullificationCurseBuff>()])
+            switch (self.GetVulnerabilityState(npc))
             {
-
-                switch (self.GetVulnerabilityState(npc))
-                {
-                    case 0: //if (!projectile.CountsAsClass(DamageClass.Melee)) return false; break; melee
-                        if (projectile.CountsAsClass<RogueDamageClass>())
-                            ret = true;
-                        break;
-                    //case 1: if (!projectile.CountsAsClass(DamageClass.Ranged)) return false; break;
-                    //case 2: if (!projectile.CountsAsClass(DamageClass.Magic)) return false; break;
-                    //case 3: if (!FargoSoulsUtil.IsSummonDamage(projectile)) return false; break;
-                    default: break;
-                }
+                case 0: //if (!projectile.CountsAsClass(DamageClass.Melee)) return false; break; melee
+                    if (projectile.CountsAsClass<RogueDamageClass>())
+                        ret = true;
+                    break;
+                //case 1: if (!projectile.CountsAsClass(DamageClass.Ranged)) return false; break;
+                //case 2: if (!projectile.CountsAsClass(DamageClass.Magic)) return false; break;
+                //case 3: if (!FargoSoulsUtil.IsSummonDamage(projectile)) return false; break;
+                default: break;
             }
             return ret;
         }

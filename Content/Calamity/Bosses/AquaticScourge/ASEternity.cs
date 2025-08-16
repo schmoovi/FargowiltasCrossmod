@@ -190,7 +190,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.AquaticScourge
         public override void SetDefaults(NPC entity)
         {
             base.SetDefaults(entity);
-            entity.lifeMax = (int)Math.Round(entity.lifeMax * 0.46f);
+            entity.lifeMax = (int)Math.Round(entity.lifeMax * 0.38f);
             entity.defense = 20;
             entity.Calamity().DR = 0;
             entity.buffImmune[BuffID.Darkness] = true;

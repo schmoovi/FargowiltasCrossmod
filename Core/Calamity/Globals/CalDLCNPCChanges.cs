@@ -227,43 +227,51 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     case NPCID.WallofFleshEye:
                         npc.lifeMax = (int)(npc.lifeMax * 0.75f);
                         break;
+                    case NPCID.QueenSlimeBoss:
+                        npc.lifeMax = (int)(npc.lifeMax * 0.8f); // compensate for emode rework health buff
+                        break;
                     case NPCID.Spazmatism:
                     case NPCID.Retinazer:
                         npc.lifeMax = (int)(npc.lifeMax * 0.925f);
-                        npc.damage = 80;
+                        //npc.damage = 80;
                         break;
                     case NPCID.SkeletronPrime:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.925f);
+                        //npc.lifeMax = (int)(npc.lifeMax * 0.925f);
                         npc.damage = 80;
                         break;
                     case NPCID.TheDestroyer:
                         npc.damage = 80;
-                        npc.lifeMax = (int)(npc.lifeMax * 0.925f);
+                        //npc.lifeMax = (int)(npc.lifeMax * 0.925f);
                         break;
                     case NPCID.Plantera:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.375f);
+                        if (CalDLCWorldSavingSystem.E_EternityRev)
+                            npc.lifeMax = (int)(npc.lifeMax * 0.4f);
                         break;
                     case NPCID.Golem:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.25f);
+                        if (CalDLCWorldSavingSystem.E_EternityRev)
+                            npc.lifeMax = (int)(npc.lifeMax * 0.4f);
                         break;
                     case NPCID.GolemHead:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.9f);
+                        //npc.lifeMax = (int)(npc.lifeMax * 0.4f * 2.5f);
+                        break;
+                    case NPCID.DD2Betsy:
+                        npc.lifeMax = (int)(npc.lifeMax * 1.25f);
                         break;
                     case NPCID.DukeFishron:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.5f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.7f);
                         break;
                     case NPCID.HallowBoss:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.45f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.8f);
                         break;
                     case NPCID.CultistBoss:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.6f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.83333334f);
                         break;
                     case NPCID.MoonLordHead:
                     case NPCID.MoonLordHand:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.75f);
+                        //npc.lifeMax = (int)(npc.lifeMax * 0.75f);
                         break;
                     case NPCID.MoonLordCore:
-                        npc.lifeMax = (int)(npc.lifeMax * 0.4f);
+                        npc.lifeMax = (int)(npc.lifeMax * 0.7f);
                         break;
                 }
             }
