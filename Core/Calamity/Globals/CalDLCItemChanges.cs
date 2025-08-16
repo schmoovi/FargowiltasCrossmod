@@ -275,9 +275,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             return false;
         }
-        public static int[] SummonsThatDontMeetConditionsButShould = [ModContent.ItemType<SeeFood>(), ModContent.ItemType<FleshyDoll>(), ModContent.ItemType<MechanicalAmalgam>(), /*ModContent.ItemType<MechEye>(), */ModContent.ItemType<PortableCodebreaker>(), ModContent.ItemType<CrystallineEffigy>(), ModContent.ItemType<MechLure>(), ModContent.ItemType<CoffinSummon>(), ModContent.ItemType<DevisCurse>(), ModContent.ItemType<AbomsCurse>(), ModContent.ItemType<MutantsCurse>()];
+        public static int[] SummonsThatDontMeetConditionsButShould = [ ModContent.ItemType<FleshyDoll>(), ModContent.ItemType<MechanicalAmalgam>(), /*ModContent.ItemType<MechEye>(), */ModContent.ItemType<PortableCodebreaker>(), ModContent.ItemType<CrystallineEffigy>(), ModContent.ItemType<MechLure>(), ModContent.ItemType<CoffinSummon>(), ModContent.ItemType<DevisCurse>(), ModContent.ItemType<AbomsCurse>(), ModContent.ItemType<MutantsCurse>()];
         public override void SetDefaults(Item item)
         {
+            if (Fargowiltas.Content.Items.FargoGlobalItem.AlwaysUsableVanillaSummons.Contains(item.type))
+            {
+                item.useAnimation = item.useTime;
+            }
             if (isFargSummon(item))
             {
                 //item.maxStack = 999;
