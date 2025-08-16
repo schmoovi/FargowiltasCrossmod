@@ -42,6 +42,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             Projectile.penetrate = -1;
             Projectile.timeLeft = 100;
             Projectile.light = 1f;
+            Projectile.DamageType = DamageClass.Generic;
 
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 15;

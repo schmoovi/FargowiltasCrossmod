@@ -107,7 +107,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                 float DamageFormula(float x) => x / MathF.Sqrt(x * x + 1);
                 float x = player.velocity.Length() / 8f;
                 float bonusMultiplier = DamageFormula(x); // This function approaches y = 1 as x approaches infinity.
-                float bonusDamage = bonusMultiplier * 0.35f;
+                float bonusDamage = bonusMultiplier * 0.25f;
                 if (player.ForceEffect<StatigelEffect>())
                     bonusDamage *= 2;
                 player.GetDamage(DamageClass.Generic) += bonusDamage;

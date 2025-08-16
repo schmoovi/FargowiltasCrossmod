@@ -44,6 +44,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             Projectile.scale = 3f;
             Projectile.Opacity = 0;
             Projectile.tileCollide = false;
+            Projectile.DamageType = DamageClass.Generic;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {

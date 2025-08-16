@@ -74,6 +74,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
+
+        public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
+        {
+            damageClass = DamageClass.Generic;
+            tooltipColor = null;
+            scaling = null;
+            return VictideEffect.BaseDamage(Main.LocalPlayer);
+        }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
@@ -87,21 +95,26 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override Header ToggleHeader => Header.GetHeader<GaleHeader>();
         public override int ToggleItemType => ModContent.ItemType<VictideEnchant>();
         public override bool ExtraAttackEffect => true;
+        public static int BaseDamage(Player player)
+        {
+            int damage;
+            if (player.ForceEffect<VictideEffect>())
+            {
+                damage = 120;
+            }
+            else
+            {
+                damage = 17;
+            }
+            return FargoSoulsUtil.HighestDamageTypeScaling(player, damage);
+        }
 
         public override void PostUpdateEquips(Player player)
         {
             if (player.whoAmI != Main.myPlayer)
                 return;
-            int damage;
-            if (player.ForceEffect<VictideEffect>())
-            {
-                damage = 250;
-            }
-            else
-            {
-                damage = 38;
-            }
 
+            int damage = BaseDamage(player);
 
             if (player.ownedProjectileCounts[ModContent.ProjectileType<VictideSpike>()] <= 0)
             {

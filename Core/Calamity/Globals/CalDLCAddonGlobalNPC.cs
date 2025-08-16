@@ -148,7 +148,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         {
             if (WulfrumScanned >= 0 && HasAnyDoTDebuff(npc))
             {
-                int DoTNormal = 35;
+                int DoTNormal = 30;
                 int DoTForce = 100;
                 Player owner = Main.player[Main.projectile[WulfrumScanned].owner];
                 if (owner != null && owner.active && !owner.dead && owner.ForceEffect<WulfrumEffect>())

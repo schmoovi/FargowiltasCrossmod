@@ -28,6 +28,7 @@ using CalamityMod.Projectiles.Ranged;
 using Mono.Cecil;
 using static System.Net.Mime.MediaTypeNames;
 using CalamityMod.Items.Weapons.Summon;
+using FargowiltasSouls.Content.Projectiles.Eternity.Enemies.Vanilla.Dungeon;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -70,6 +71,13 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }
+        public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
+        {
+            damageClass = DamageClass.Generic;
+            tooltipColor = null;
+            scaling = null;
+            return DaedalusEffect.BaseDamage(Main.LocalPlayer);
+        }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
@@ -97,6 +105,16 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                 addonPlayer.DaedalusTimer = 0;
             }
         }
+        public static int BaseDamage(Player player)
+        {
+            bool forceEffect = player.ForceEffect<DaedalusEffect>();
+            int projDamage = forceEffect ? 100 : 65;
+            if (player.HasEffect<ElementsForceEffect>())
+            {
+                projDamage = 120;
+            }
+            return FargoSoulsUtil.HighestDamageTypeScaling(player, projDamage);
+        }
         public override void TryAdditionalAttacks(Player player, int damage, DamageClass damageType)
         {
             if (player.whoAmI != Main.myPlayer)
@@ -107,13 +125,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                 addonPlayer.DaedalusTimer = (int)WindupTime;
                 bool forceEffect = player.ForceEffect<DaedalusEffect>();
                 float arrowSpeed = forceEffect ? 16f : 12f;
-                int projDamage = forceEffect ? 100 : 65;
                 if (player.HasEffect<ElementsForceEffect>())
                 {
-                    projDamage = 120;
                     arrowSpeed = 22;
                 }
-                projDamage = FargoSoulsUtil.HighestDamageTypeScaling(player, projDamage);
+                int projDamage = BaseDamage(player);
 
                 int amt = forceEffect ? 6 : 4;
                 float knockback = 1f;

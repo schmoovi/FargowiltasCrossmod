@@ -76,6 +76,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
         }
+
+        public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
+        {
+            damageClass = DamageClass.Generic;
+            tooltipColor = null;
+            scaling = null;
+            return HydrothermicEffect.BaseDamage(Main.LocalPlayer);
+        }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
@@ -85,6 +93,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override int ToggleItemType => ModContent.ItemType<HydrothermicEnchant>();
 
         public const int MaxHeat = 60 * 8;
+        public static int BaseDamage(Player player)
+        {
+            bool force = player.ForceEffect<HydrothermicEffect>();
+            int flareDamage = force ? 300 : 200;
+            if (player.HasEffect<ElementsForceEffect>())
+                flareDamage = 600;
+            return FargoSoulsUtil.HighestDamageTypeScaling(player, flareDamage);
+        }
         public override void PostUpdateEquips(Player player)
         {
             var dlc = player.CalamityAddon();
@@ -114,10 +130,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                     dlc.HydrothermicFlareCooldown = 1;
                     if (player.whoAmI == Main.myPlayer)
                     {
-                        int flareDamage = force ? 300 : 200;
-                        if (player.HasEffect<ElementsForceEffect>())
-                            flareDamage = 600;
-                        flareDamage = FargoSoulsUtil.HighestDamageTypeScaling(player, flareDamage);
+                        int flareDamage = BaseDamage(player);
                         Projectile.NewProjectile(GetSource_EffectItem(player), player.Center, player.DirectionTo(Main.MouseWorld).RotatedByRandom(MathHelper.PiOver2 * 0.25f) * Main.rand.NextFloat(13f, 17f), 
                             ModContent.ProjectileType<HydrothermicVentShot>(), flareDamage, 2f, player.whoAmI);
                     }

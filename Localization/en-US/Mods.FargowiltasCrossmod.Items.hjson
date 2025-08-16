@@ -287,7 +287,7 @@ AerospecEnchant: {
 	DisplayName: Aerospec Enchantment
 	Tooltip:
 		'''
-		Gain +5% critical strike chance and summon damage whenever you use a jump or double jump
+		Gain +3% critical strike chance and summon damage whenever you use a jump or double jump, up to 15%
 		This bonus lasts until your jumps are reset or a mount is used
 		'''
 	CritUp: +{0}% crit
@@ -324,7 +324,7 @@ WulfrumEnchant: {
 		The drone scans enemies it collides with
 		Scanning enemies tells you their debuff weaknesses and resistances
 		Green means weakness, red means resistance
-		Scanned enemies also take extra flat damage over time when afflicted with any debuff
+		Scanned enemies also take an extra 15 damage per second when afflicted with any debuff
 		'''
 }
 
@@ -432,7 +432,7 @@ StatigelEnchant: {
 		'''
 		Increases your maximum speed
 		Massively decreases your acceleration and deceleration
-		Gain up to +35% increased damage, depending on how fast you're moving
+		Gain up to 25% increased damage, depending on how fast you're moving
 		'''
 }
 

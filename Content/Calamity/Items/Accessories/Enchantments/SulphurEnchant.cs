@@ -74,6 +74,13 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
+        public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
+        {
+            damageClass = DamageClass.Generic;
+            tooltipColor = null;
+            scaling = null;
+            return SulphurEffect.BaseDamage(Main.LocalPlayer);
+        }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
@@ -87,7 +94,15 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override Header ToggleHeader => Header.GetHeader<GaleHeader>();
         public override int ToggleItemType => ModContent.ItemType<SulphurEnchant>();
         public override bool ExtraAttackEffect => true;
-
+        public static int BaseDamage(Player player)
+        {
+            int bubbleDamage = 23;
+            if (player.ForceEffect<SulphurEffect>())
+            {
+                bubbleDamage = 160;
+            }
+            return FargoSoulsUtil.HighestDamageTypeScaling(player, bubbleDamage);
+        }
         public override void PostUpdateEquips(Player player)
         {
             player.GetJumpState<SulphurJump>().Enable();
@@ -131,11 +146,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             if (player.HasEffect<JungleJump>())
                 player.FargoSouls().CanJungleJump = true;
 
-            int bubbleDamage = 80;
-            if (player.ForceEffect<SulphurEffect>())
-            {
-                bubbleDamage = 250;
-            }
+            int bubbleDamage = SulphurEffect.BaseDamage(player);
 
             int offset = player.height;
             if (player.gravDir == -1f)

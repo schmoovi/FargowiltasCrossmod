@@ -74,6 +74,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
+
+        public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
+        {
+            damageClass = DamageClass.Generic;
+            tooltipColor = null;
+            scaling = null;
+            return MarniteLasersEffect.BaseDamage(Main.LocalPlayer);
+        }
     }
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
@@ -117,6 +125,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override Header ToggleHeader => Header.GetHeader<WorldShaperHeader>();
         public override int ToggleItemType => ModContent.ItemType<MarniteEnchant>();
         public override bool ExtraAttackEffect => true;
+        public static int BaseDamage(Player player)
+        {
+            int damage = player.ForceEffect<MarniteLasersEffect>() ? 80 : 9;
+            return FargoSoulsUtil.HighestDamageTypeScaling(player, damage);
+        }
         public override void PostUpdateEquips(Player player)
         {
             if (player.whoAmI != Main.myPlayer)
@@ -147,14 +160,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                         {
                             Vector2 pos = Main.rand.NextVector2FromRectangle(player.Hitbox);
                             Vector2 vel = pos.DirectionTo(nearestNPC.Center) * 2;
-
-                            float damage = player.ForceEffect<MarniteLasersEffect>() ? 80 : 30;
-                            damage *= player.ActualClassDamage(DamageClass.Generic);
+                            int damage = BaseDamage(player);
 
                             int index = Projectile.NewProjectile(player.GetSource_EffectItem<MarniteLasersEffect>(), pos, vel, ModContent.ProjectileType<MarniteLaser>(), (int)damage, 1, player.whoAmI);
                             if (index.IsWithinBounds(Main.maxProjectiles) && Main.projectile[index] is Projectile proj)
                             {
-                                proj.knockBack += 10;
+                                proj.knockBack += 3;
                             }
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, index);
                         }
