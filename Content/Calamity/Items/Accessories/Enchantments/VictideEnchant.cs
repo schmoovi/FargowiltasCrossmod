@@ -100,7 +100,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             int damage;
             if (player.ForceEffect<VictideEffect>())
             {
-                damage = 120;
+                damage = 90;
             }
             else
             {
@@ -127,7 +127,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                 SoundEngine.PlaySound(SoundID.Item17 with { Pitch = -0.4f }, player.Center);
             }
             if (Main.projectile.Any(p => p.TypeAlive<VictideSpike>() && p.owner == player.whoAmI && p.ai[2] < 2))
-                player.statDefense += 4;
+                player.statDefense += player.ForceEffect<VictideEffect>() ? 10 : 4;
         }
     }
 }

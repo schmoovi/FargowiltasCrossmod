@@ -137,9 +137,21 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             if (Projectile.ai[2] == 2)
             {
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-                if (Projectile.velocity.Y < 10 && !Main.player[Projectile.owner].ForceEffect<VictideEffect>())
+                bool force = Main.player[Projectile.owner].ForceEffect<VictideEffect>();
+                if (Projectile.velocity.Y < 10 && !force)
                 {
                     Projectile.velocity.Y += 0.1f;
+                }
+                if (force)
+                {
+                    NPC npc = Projectile.FindTargetWithinRange(400, true);
+                    if (npc != null && npc.Alive())
+                    {
+                        Vector2 destination = npc.Center;
+                        float accel = 0.06f;
+                        float decel = 0.06f;
+                        Projectile.velocity = FargoSoulsUtil.SmartAccel(Projectile.Center, destination, Projectile.velocity, accel, decel);
+                    }
                 }
             }
         }

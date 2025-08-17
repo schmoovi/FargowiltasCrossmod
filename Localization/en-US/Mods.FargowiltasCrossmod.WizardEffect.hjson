@@ -14,7 +14,7 @@ PlagueReaper:
 	'''
 Umbraphile: Bats deal more damage and heal for more
 Sulphur: Jumps create 3 bubbles
-Victide: Spikes are no longer affected by gravity and inflict venom
+Victide: Spikes have a slight homing effect, deal more damage, and inflict Venom, defense increased to 10
 Statigel: Higher maximum speed, damage bonus doubled
 TitanHeart: Doubled damage reduction, increased grounded charge rate to 100% total
 FathomSwarmer: Larger Light, Faster Fish

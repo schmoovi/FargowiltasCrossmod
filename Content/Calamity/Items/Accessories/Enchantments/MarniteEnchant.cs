@@ -127,7 +127,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override bool ExtraAttackEffect => true;
         public static int BaseDamage(Player player)
         {
-            int damage = player.ForceEffect<MarniteLasersEffect>() ? 80 : 9;
+            int damage = player.ForceEffect<MarniteLasersEffect>() ? 90 : 9;
             return FargoSoulsUtil.HighestDamageTypeScaling(player, damage);
         }
         public override void PostUpdateEquips(Player player)

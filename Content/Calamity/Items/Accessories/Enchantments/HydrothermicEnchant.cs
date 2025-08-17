@@ -96,7 +96,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public static int BaseDamage(Player player)
         {
             bool force = player.ForceEffect<HydrothermicEffect>();
-            int flareDamage = force ? 240 : 120;
+            int flareDamage = force ? 200 : 120;
             if (player.HasEffect<ElementsForceEffect>())
                 flareDamage = 600;
             return FargoSoulsUtil.HighestDamageTypeScaling(player, flareDamage);

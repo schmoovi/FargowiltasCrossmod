@@ -118,9 +118,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             damage += 8;
             int count = 3;
 
+            float softcap = 32;
 
             if (Projectile.ai[0] > 2)
             {
+                softcap = 110;
                 gasSpeedMin *= 2;
                 gasSpeedMax *= 2;
                 damage *= 2;
@@ -128,6 +130,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
             }
             if (damage < 20)
                 damage = 20;
+
+            if (damage > softcap)
+                damage = (int)(((2 * softcap) + damage) / 3f);
+
             for (int j = 0; j < count; j++)
             {
                 int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, new Vector2(0, Main.rand.NextFloat(gasSpeedMin, gasSpeedMax)).RotatedByRandom(MathHelper.TwoPi), ModContent.ProjectileType<SulphurCloud>(), damage, 0, Projectile.owner);

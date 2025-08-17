@@ -108,7 +108,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public static int BaseDamage(Player player)
         {
             bool forceEffect = player.ForceEffect<DaedalusEffect>();
-            int projDamage = forceEffect ? 100 : 35;
+            int projDamage = forceEffect ? 46 : 35;
             if (player.HasEffect<ElementsForceEffect>())
             {
                 projDamage = 120;

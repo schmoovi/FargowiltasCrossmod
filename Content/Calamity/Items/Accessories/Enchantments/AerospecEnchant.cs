@@ -107,8 +107,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                 }
                 return;
             }
-            int critPerJump = player.ForceEffect<AerospecJumpEffect>() ? 6 : 3;
-            int maxCritJumps = 5;
+            int critPerJump = player.ForceEffect<AerospecJumpEffect>() ? 10 : 5;
+            int maxCritJumps = 3;
 
 
             float extraCrit = (mplayer.NumJumpsUsed > maxCritJumps ? maxCritJumps : mplayer.NumJumpsUsed) * critPerJump;
@@ -144,7 +144,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             addonPlayer.ElementsAirTime = 0;
             if (addonPlayer.NumJumpsUsed > 0)
             {
-                int critPerJump = player.ForceEffect<AerospecJumpEffect>() ? 6 : 3;
+                int critPerJump = player.ForceEffect<AerospecJumpEffect>() ? 10 : 5;
                 int critLost = critPerJump * addonPlayer.NumJumpsUsed;
                 addonPlayer.NumJumpsUsed = 0;
                 CombatText.NewText(player.Hitbox, Color.OrangeRed, Language.GetTextValue("Mods.FargowiltasCrossmod.Items.AerospecEnchant.CritReset", critLost), true);

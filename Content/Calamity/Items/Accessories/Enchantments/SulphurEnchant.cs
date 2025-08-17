@@ -76,10 +76,16 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         }
         public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
         {
-            damageClass = DamageClass.Generic;
+            bool force = Main.LocalPlayer.ForceEffect<SulphurEffect>();
+            damageClass = DamageClass.Default;
             tooltipColor = null;
-            scaling = null;
-            return SulphurEffect.BaseDamage(Main.LocalPlayer);
+            scaling = (int)Main.LocalPlayer.GetDamage(Main.LocalPlayer.HeldItem.DamageType).ApplyTo(((Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.FindAmmo(Main.LocalPlayer.HeldItem.useAmmo).damage) / 2) + 8);
+            if (force)
+                scaling *= 2;
+            float softcap = force ? 110 : 32;
+            if (scaling > softcap)
+                scaling = (int)(((2 * softcap) + scaling) / 3f);
+            return force ? 100 : 50;
         }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
@@ -99,7 +105,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             int bubbleDamage = 23;
             if (player.ForceEffect<SulphurEffect>())
             {
-                bubbleDamage = 160;
+                bubbleDamage = 172;
             }
             return FargoSoulsUtil.HighestDamageTypeScaling(player, bubbleDamage);
         }
