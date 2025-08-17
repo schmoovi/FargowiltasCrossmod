@@ -24,6 +24,7 @@ using FargowiltasSouls.Content.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
+using FargowiltasSouls.Content.Items.Accessories.Eternity;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
 {
