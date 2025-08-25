@@ -26,6 +26,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class ElementsForce : BaseForce
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Forces/" + Name;
         public override List<AccessoryEffect> ActiveSkillTooltips =>
             [AccessoryEffectLoader.GetEffect<ElementsForceEffect>()];
         public override void SetDefaults()

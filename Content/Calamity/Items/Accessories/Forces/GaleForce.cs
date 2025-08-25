@@ -33,6 +33,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
     [LegacyName("ExplorationForce")]
     public class GaleForce : BaseForce
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Forces/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             //return FargowiltasCrossmod.EnchantLoadingEnabled;
