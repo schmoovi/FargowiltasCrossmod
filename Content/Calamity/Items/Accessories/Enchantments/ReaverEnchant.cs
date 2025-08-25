@@ -40,6 +40,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("ReaverEnchantment")]
     public class ReaverEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override List<AccessoryEffect> ActiveSkillTooltips =>
             [AccessoryEffectLoader.GetEffect<ReaverEffect>()];
         public override Color nameColor => new(145, 203, 102);

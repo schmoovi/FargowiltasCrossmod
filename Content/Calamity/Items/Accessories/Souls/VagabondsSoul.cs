@@ -16,6 +16,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Souls
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class VagabondsSoul : BaseSoul
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Souls/" + Name;
         protected override Color? nameColor => new Color(217, 144, 67);
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

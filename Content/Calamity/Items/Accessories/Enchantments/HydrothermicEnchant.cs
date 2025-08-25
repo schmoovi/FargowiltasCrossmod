@@ -46,6 +46,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("HydrothermicEnchantment")]
     public class HydrothermicEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public static readonly Color NameColor = new Color(248, 182, 89);
         public override Color nameColor => NameColor;
 

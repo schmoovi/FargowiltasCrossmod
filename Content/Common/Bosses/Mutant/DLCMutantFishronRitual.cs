@@ -128,7 +128,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
                 target.AddBuff(ModContent.BuffType<OceanicMaulBuff>(), 5400);
                 target.AddBuff(ModContent.BuffType<MutantFangBuff>(), 180);
             }
-            target.AddBuff(ModContent.BuffType<MutantNibbleBuff>(), 900);
+
             target.AddBuff(ModContent.BuffType<CurseoftheMoonBuff>(), 900);
         }
 
