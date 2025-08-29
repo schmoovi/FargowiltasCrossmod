@@ -340,6 +340,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<BerserkerInstallBuff>());
             CalamityLists.debuffList.Add(BuffType<RushJobBuff>());
             CalamityLists.debuffList.Add(BuffType<TwinsInstallBuff>());
+            CalamityLists.debuffList.Add(BuffType<BlackInfernoBuff>());
             CalamityLists.debuffList.Add(BuffType<LeadPoisonBuff>());
             CalamityLists.debuffList.Add(BuffType<OriPoisonBuff>());
             CalamityLists.debuffList.Add(BuffType<PungentGazeBuff>());

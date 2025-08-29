@@ -24,6 +24,7 @@ using FargowiltasCrossmod.Content.Calamity.Toggles;
 using CalamityMod;
 using FargowiltasSouls.Content.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
+using FargowiltasSouls.Assets.Textures;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
