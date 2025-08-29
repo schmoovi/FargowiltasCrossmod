@@ -37,6 +37,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("DaedalusEnchantment")]
     public class DaedalusEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public static readonly Color NameColor = new(132, 212, 246);
         public override Color nameColor => NameColor;
         public override void SetStaticDefaults()

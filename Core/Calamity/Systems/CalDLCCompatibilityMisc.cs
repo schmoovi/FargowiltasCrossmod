@@ -313,7 +313,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<FlippedBuff>());
             CalamityLists.debuffList.Add(BuffType<FusedBuff>());
             CalamityLists.debuffList.Add(BuffType<GodEaterBuff>());
-            CalamityLists.debuffList.Add(BuffType<GuiltyBuff>());
             CalamityLists.debuffList.Add(BuffType<HexedBuff>());
             CalamityLists.debuffList.Add(BuffType<HypothermiaBuff>());
             CalamityLists.debuffList.Add(BuffType<InfestedBuff>());
@@ -321,13 +320,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<JammedBuff>());
             CalamityLists.debuffList.Add(BuffType<LethargicBuff>());
             CalamityLists.debuffList.Add(BuffType<LightningRodBuff>());
-            CalamityLists.debuffList.Add(BuffType<LivingWastelandBuff>());
             CalamityLists.debuffList.Add(BuffType<LovestruckBuff>());
             CalamityLists.debuffList.Add(BuffType<LowGroundBuff>());
             CalamityLists.debuffList.Add(BuffType<MarkedforDeathBuff>());
             CalamityLists.debuffList.Add(BuffType<MidasBuff>());
-            CalamityLists.debuffList.Add(BuffType<MutantNibbleBuff>());
-            CalamityLists.debuffList.Add(BuffType<NanoInjectionBuff>());
             CalamityLists.debuffList.Add(BuffType<NeurotoxinBuff>());
             CalamityLists.debuffList.Add(BuffType<OceanicMaulBuff>());
             CalamityLists.debuffList.Add(BuffType<OiledBuff>());
@@ -342,12 +338,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<UnluckyBuff>());
             CalamityLists.debuffList.Add(BuffType<UnstableBuff>());
             CalamityLists.debuffList.Add(BuffType<BerserkerInstallBuff>());
-            CalamityLists.debuffList.Add(BuffType<HolyPriceBuff>());
-            CalamityLists.debuffList.Add(BuffType<BrainOfConfusionBuff>());
             CalamityLists.debuffList.Add(BuffType<RushJobBuff>());
             CalamityLists.debuffList.Add(BuffType<TwinsInstallBuff>());
-            CalamityLists.debuffList.Add(BuffType<SnowstormCDBuff>());
-            CalamityLists.debuffList.Add(BuffType<HellFireBuff>());
             CalamityLists.debuffList.Add(BuffType<LeadPoisonBuff>());
             CalamityLists.debuffList.Add(BuffType<OriPoisonBuff>());
             CalamityLists.debuffList.Add(BuffType<PungentGazeBuff>());
