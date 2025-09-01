@@ -245,7 +245,6 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
                 Main.fastForwardTimeToDusk = true;
             else if (!Main.fastForwardTimeToDusk && Main.time >= Main.nightLength / 2)
                 Main.time = Main.nightLength / 2;
-            Main.LocalPlayer.buffImmune[ModContent.BuffType<HypothermiaBuff>()] = true;
 
             int n = NPC.FindFirstNPC(ModContent.NPCType<DILF>());
             if (n != -1 && n != Main.maxNPCs)

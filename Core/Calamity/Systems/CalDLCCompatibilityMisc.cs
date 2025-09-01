@@ -314,7 +314,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             CalamityLists.debuffList.Add(BuffType<FusedBuff>());
             CalamityLists.debuffList.Add(BuffType<GodEaterBuff>());
             CalamityLists.debuffList.Add(BuffType<HexedBuff>());
-            CalamityLists.debuffList.Add(BuffType<HypothermiaBuff>());
             CalamityLists.debuffList.Add(BuffType<InfestedBuff>());
             CalamityLists.debuffList.Add(BuffType<IvyVenomBuff>());
             CalamityLists.debuffList.Add(BuffType<JammedBuff>());
