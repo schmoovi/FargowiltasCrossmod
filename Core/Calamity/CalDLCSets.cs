@@ -4,7 +4,7 @@ using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Projectiles.Magic;
 using CalamityMod.Projectiles.Melee;
 using CalamityMod.Projectiles.Summon;
-using FargowiltasSouls.Content.Buffs.Masomode;
+using FargowiltasSouls.Content.Buffs.Eternity;
 using FargowiltasSouls.Content.Buffs.Souls;
 using FargowiltasSouls.Content.Buffs;
 using FargowiltasSouls.Content.Projectiles.Masomode;
@@ -38,6 +38,18 @@ using FargowiltasSouls.Content.Bosses.Lifelight;
 using FargowiltasSouls.Content.Bosses.Champions.Cosmos;
 using CalamityMod.Items.Tools;
 using CalamityMod.Items.Weapons.Typeless;
+using FargowiltasSouls.Content.Projectiles.Accessories.VerdantDoomsayerMask;
+using FargowiltasSouls.Content.Projectiles.Masomode.Bosses.MechanicalBosses;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.WallOfFlesh;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Plantera;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Golem;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.DukeFishron;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MoonLord;
+using FargowiltasSouls.Content.Buffs.Eternity;
+using FargowiltasSouls.Content.Projectiles.Eternity;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.MechanicalBosses;
+using Fargowiltas.Content.Items.Vanity;
 
 namespace FargowiltasCrossmod.Core.Calamity
 {
@@ -62,6 +74,8 @@ namespace FargowiltasCrossmod.Core.Calamity
             /// Items for which emode changes should be explicitly disabled. Exists to remove conflicts with Calamity item changes for the same item.
             /// </summary>
             public static bool[] DisabledEmodeChanges; 
+
+            
         }
         public class NPCs
         {
@@ -251,7 +265,6 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<Plague>(),
                 BuffType<SulphuricPoisoning>(),
                 BuffType<SagePoison>(),
-                BuffType<KamiFlu>(),
                 BuffType<CrushDepth>(),
                 BuffType<RiptideDebuff>(),
                 BuffType<BrainRot>(),
@@ -273,11 +286,10 @@ namespace FargowiltasCrossmod.Core.Calamity
                 BuffType<GodEaterBuff>(),
                 BuffType<InfestedBuff>(),
                 BuffType<IvyVenomBuff>(),
-                BuffType<NanoInjectionBuff>(),
                 BuffType<NeurotoxinBuff>(),
                 BuffType<ShadowflameBuff>(),
                 BuffType<TwinsInstallBuff>(),
-                BuffType<HellFireBuff>(),
+                BuffType<BlackInfernoBuff>(),
                 BuffType<LeadPoisonBuff>(),
                 BuffType<OriPoisonBuff>(),
                 BuffType<SolarFlareBuff>()
@@ -347,7 +359,6 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ProjectileType<LifeRuneRetractHitbox>(),
                 ProjectileType<LifeRunespearExplosion>(),
                 ProjectileType<LifeRunespearHitbox>(),
-                ProjectileType<LifeScar>(),
                 ProjectileType<PlanteraSpikevine>(),
                 ProjectileType<PlanteraTentacle>(),
                 ProjectileType<GolemBoulder>(),

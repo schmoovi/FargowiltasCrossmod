@@ -27,6 +27,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class FathomSwarmerEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
@@ -34,6 +35,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             //return true;
         }
         public override Color nameColor => new Color(153, 200, 193);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -77,7 +82,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 
         public override void PostUpdateEquips(Player player)
         {
-       
+            if (player.whoAmI != Main.myPlayer)
+                return;
             if (player.ownedProjectileCounts[ModContent.ProjectileType<FathomAngler>()] == 0)
             {
                 Projectile p = Projectile.NewProjectileDirect(player.GetSource_EffectItem<FathomSwarmerEffect>(), player.Center, Vector2.Zero, ModContent.ProjectileType<FathomAngler>(), 0, 0, player.whoAmI);

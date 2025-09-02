@@ -39,6 +39,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("UmbraphileEnchantment")]
     public class UmbraphileEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override List<AccessoryEffect> ActiveSkillTooltips =>
             [AccessoryEffectLoader.GetEffect<UmbraphileEffect>()];
         public override bool IsLoadingEnabled(Mod mod)
@@ -50,7 +51,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 
         public override void SetStaticDefaults()
         {
-
+            base.SetStaticDefaults();
         }
         public override void SetDefaults()
         {
@@ -92,6 +93,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override bool ActiveSkill => true;
         public override void PostUpdateEquips(Player player)
         {
+            if (player.whoAmI != Main.myPlayer)
+                return;
             CalDLCAddonPlayer cd = player.GetModPlayer<CalDLCAddonPlayer>();
             int damage = player.ForceEffect<UmbraphileEffect>() ? 100 : 200;
             

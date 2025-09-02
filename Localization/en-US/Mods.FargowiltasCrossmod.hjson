@@ -22,7 +22,7 @@ EternityRevDifficulty: {
 
 EternityDeathDifficulty: {
 	Name: Eternity-Death
-	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/800080:Death Mode] [c/00FFFF:changes and extra Vanilla boss behavior.]"
+	ShortDescription: "[c/00FFFF:A challenging mode from Fargo's Mods that includes] [c/800080:Death Mode] [c/00FFFF:changes.]"
 	ExpandedDescription:
 		'''
 		Enables [c/00FFFF:Eternity Mode] and [c/800080:Death Mode,] and enables Master Mode drops.
@@ -33,7 +33,6 @@ EternityDeathDifficulty: {
 		-Old Duke
 		-Exo Mechs
 		The remaining bosses are still being worked on!
-		Eternity-Death only: Expands behavior for vanilla [c/00FFFF:Eternity Mode] bosses, including parts of Calamity behavior or new Calamity-inspired behavior.
 
 		By default, [c/00FFFF:Eternity Mode] behaviour takes priority. This can be changed in the configs.
 		{$Mods.FargowiltasSouls.UI.ExpandedFeatures}
@@ -57,8 +56,6 @@ Buffs: {
 		DisplayName: Calamitous Presence
 	}
 }
-
-Cooldowns.DaedalusPlatformCooldown: Daedalus Platform
 
 ExpandedTooltips: {
 	FountainAstral: Forces surrounding biome state to Astral Infection (in hardmode only) upon activation

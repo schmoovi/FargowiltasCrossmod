@@ -40,7 +40,7 @@ namespace FargowiltasCrossmod.Content.Common
         {
             _lastUpdateUiGameTime = gameTime;
 
-            if (Main.LocalPlayer.talkNPC != -1 && !Main.playerInventory && Main.npc[Main.LocalPlayer.talkNPC].type == ModContent.NPCType<Fargowiltas.NPCs.Deviantt>())
+            if (Main.LocalPlayer.talkNPC != -1 && !Main.playerInventory && Main.npc[Main.LocalPlayer.talkNPC].type == ModContent.NPCType<Fargowiltas.Content.NPCs.Deviantt>())
             {
                 if (SwapperInterface?.CurrentState != null)
                 {

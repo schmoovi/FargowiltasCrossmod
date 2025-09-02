@@ -59,18 +59,20 @@ public class ExplosiveCrate : ModProjectile
     public override void OnKill(int timeLeft)
     {
         SoundEngine.PlaySound(CommonCalamitySounds.PlagueBoomSound with { MaxInstances = 0 }, Projectile.Center);
-
-        for (int i = 0; i < 32; i++)
+        if (Main.netMode != NetmodeID.Server)
         {
-            Dust spark = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(20f, 20f), Main.rand.NextBool() ? 31 : 6);
-            spark.velocity = Main.rand.NextVector2Circular(24f, 6f) - Vector2.UnitY * Main.rand.NextFloat(6f, 33f);
-            spark.scale = Main.rand.NextFloat(0.75f, 1.3f);
-        }
+            for (int i = 0; i < 32; i++)
+            {
+                Dust spark = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(20f, 20f), Main.rand.NextBool() ? 31 : 6);
+                spark.velocity = Main.rand.NextVector2Circular(24f, 6f) - Vector2.UnitY * Main.rand.NextFloat(6f, 33f);
+                spark.scale = Main.rand.NextFloat(0.75f, 1.3f);
+            }
 
-        for (int i = 0; i < 25; i++)
-        {
-            float fireScale = Main.rand.NextFloat(0.4f, 0.7f);
-            OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(Projectile.Center, Main.rand.NextVector2Circular(20f, 20f), new Vector2(70f, 100f) * fireScale, Color.Orange);
+            for (int i = 0; i < 25; i++)
+            {
+                float fireScale = Main.rand.NextFloat(0.4f, 0.7f);
+                OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(Projectile.Center, Main.rand.NextVector2Circular(20f, 20f), new Vector2(70f, 100f) * fireScale, Color.Orange);
+            }
         }
     }
 

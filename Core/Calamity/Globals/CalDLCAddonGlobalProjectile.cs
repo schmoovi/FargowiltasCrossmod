@@ -3,7 +3,6 @@ using FargowiltasCrossmod.Content.Calamity.Projectiles;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls;
-using FargowiltasSouls.Content.Projectiles.BossWeapons;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using Microsoft.Xna.Framework;
 using System;

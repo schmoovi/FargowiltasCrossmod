@@ -110,6 +110,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.SlimeGod
         public override void SetDefaults()
         {
             NPC.lifeMax = 10000;
+            NPC.damage = 62;
         }
         public override bool PreAI()
         {

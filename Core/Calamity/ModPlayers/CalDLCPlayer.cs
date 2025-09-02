@@ -27,9 +27,9 @@ using FargowiltasSouls;
 using FargowiltasSouls.Content.Bosses.Champions.Earth;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
 using FargowiltasSouls.Content.Buffs.Boss;
-using FargowiltasSouls.Content.Buffs.Masomode;
+using FargowiltasSouls.Content.Buffs.Eternity;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using FargowiltasSouls.Content.Items.Accessories.Masomode;
+using FargowiltasSouls.Content.Items.Accessories.Eternity;
 using FargowiltasSouls.Content.Items.Weapons.Challengers;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.ModPlayers;
@@ -54,7 +54,10 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
     {
         public bool CalamitousPresence;
         public bool CheckedWrathOldDuke;
-        //Unique accessories fields
+
+        public static int SpongeRechargeTime_Normal = 0;
+        public static int SpongeRechargeDelay_Normal = 0;
+        public static bool CheckedSpongeTimes = false;
 
         public override void ResetEffects()
         {
@@ -96,7 +99,10 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
         }
         public override void PreUpdateMovement()
         {
-
+            if (WorldSavingSystem.EternityMode && Player.Calamity().ExoChair)
+            {
+                Player.velocity *= 0.6f;
+            }
         }
 
         [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
@@ -189,6 +195,22 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
 
             if (calamityPlayer.luxorsGift && Player.HeldItem != null && Player.HeldItem.type == ItemType<KamikazeSquirrelStaff>())
                 calamityPlayer.luxorsGift = false;
+
+            if (WorldSavingSystem.EternityMode)
+            {
+                if (!CheckedSpongeTimes)
+                {
+                    SpongeRechargeTime_Normal = TheSponge.TotalShieldRechargeTime;
+                    SpongeRechargeDelay_Normal = TheSponge.ShieldRechargeDelay;
+                    CheckedSpongeTimes = true;
+                }
+                int rt = (int)(SpongeRechargeTime_Normal * 1.25f);
+                int rd = (int)(SpongeRechargeDelay_Normal * 1.25f);
+                if (TheSponge.TotalShieldRechargeTime < rt)
+                TheSponge.TotalShieldRechargeTime = rt;
+                if (TheSponge.ShieldRechargeDelay < rd)
+                    TheSponge.ShieldRechargeDelay = rd;
+            }
 
         }
         public bool[] PreUpdateBuffImmune;
@@ -378,6 +400,10 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                     Player.lifeRegen = cap;
             }
             base.UpdateBadLifeRegen();
+        }
+        public override void PostUpdateRunSpeeds()
+        {
+            
         }
         [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
         public override float UseSpeedMultiplier(Item item)

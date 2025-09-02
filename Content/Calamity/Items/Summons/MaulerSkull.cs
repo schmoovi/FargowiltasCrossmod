@@ -3,7 +3,7 @@ using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.NPCs.AcidRain;
 
-using Fargowiltas.Items.Summons;
+using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
 using Terraria;
 using Terraria.ID;

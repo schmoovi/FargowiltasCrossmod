@@ -26,6 +26,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class ElementsForce : BaseForce
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Forces/" + Name;
         public override List<AccessoryEffect> ActiveSkillTooltips =>
             [AccessoryEffectLoader.GetEffect<ElementsForceEffect>()];
         public override void SetDefaults()
@@ -50,7 +51,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
             recipe.AddIngredient<DaedalusEnchant>();
             recipe.AddIngredient<ReaverEnchant>();
             recipe.AddIngredient<HydrothermicEnchant>();
-            recipe.AddTile(ModContent.TileType<Fargowiltas.Items.Tiles.CrucibleCosmosSheet>());
+            recipe.AddTile(ModContent.TileType<Fargowiltas.Content.Items.Tiles.CrucibleCosmosSheet>());
             recipe.Register();
         }
     }

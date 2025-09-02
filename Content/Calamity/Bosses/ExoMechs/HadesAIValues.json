@@ -2,7 +2,7 @@
   "BasicLaserDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "BodySegmentCount": {
     "EternityRevValue": 50.0,
@@ -62,7 +62,7 @@
   "DefaultSegmentDamage": {
     "EternityRevValue": 375.0,
     "EternityDeathValue": 375.0,
-    "MasochistValue": 375.0
+    "MasochistValue": 562.0
   },
   "ExoEnergyBlast_BlastDelay": {
     "EternityRevValue": 222.0,
@@ -97,7 +97,7 @@
   "ExoEnergyBlastDamage": {
     "EternityRevValue": 540.0,
     "EternityDeathValue": 540.0,
-    "MasochistValue": 540.0
+    "MasochistValue": 810.0
   },
   "MineBarrages_BarrageCount": {
     "EternityRevValue": 1.0,
@@ -117,12 +117,12 @@
   "MineDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "MissileDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "MissileLunges_LungeCount": {
     "EternityRevValue": 3.0,

@@ -35,6 +35,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("PlaguebringerEnchantment")]
     public class PlaguebringerEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
@@ -44,7 +45,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 
         public override void SetStaticDefaults()
         {
-
+            base.SetStaticDefaults();
         }
         public override void SetDefaults()
         {
@@ -91,7 +92,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override void PostUpdateEquips(Player player)
         {
             float maxCharge = 400;
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<PlagueCloud>()] <= 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<PlagueCloud>()] <= 0 && player.whoAmI == Main.myPlayer)
             {
                 Projectile proj = Projectile.NewProjectileDirect(player.GetSource_EffectItem<PlaguebringerEffect>(), player.Center, Vector2.Zero, ModContent.ProjectileType<PlagueCloud>(), 100, 0, player.whoAmI, player.whoAmI, 1);
                 NetMessage.SendData(MessageID.SyncProjectile, number: proj.whoAmI);
@@ -108,8 +109,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             if (player.CalamityAddon().PlagueCharge >= maxCharge)
             {
                 SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/NPCKilled/NuclearTerrorDeath"), player.Center);
-                Projectile proj = Projectile.NewProjectileDirect(player.GetSource_EffectItem<PlaguebringerEffect>(), player.Center, new Vector2(0, 0).RotatedByRandom(MathHelper.TwoPi), ModContent.ProjectileType<PlagueCloud>(), player.ForceEffect<PlaguebringerEffect>() ? 800 : 400, 0, player.whoAmI);
-                NetMessage.SendData(MessageID.SyncProjectile, number: proj.whoAmI);
+                if (player.whoAmI == Main.myPlayer)
+                {
+                    Projectile proj = Projectile.NewProjectileDirect(player.GetSource_EffectItem<PlaguebringerEffect>(), player.Center, new Vector2(0, 0).RotatedByRandom(MathHelper.TwoPi), ModContent.ProjectileType<PlagueCloud>(), player.ForceEffect<PlaguebringerEffect>() ? 800 : 400, 0, player.whoAmI);
+                    NetMessage.SendData(MessageID.SyncProjectile, number: proj.whoAmI);
+                }
                 for (int i = 0; i < 50; i++)
                 {
                     Particle part = new TimedSmokeParticle(player.Center, new Vector2(0, Main.rand.NextFloat(0, 40)).RotatedByRandom(MathHelper.TwoPi), Color.Green * 0, Color.LimeGreen, 2f, 0.5f, 100, Main.rand.NextFloat(-0.02f, 0.02f));

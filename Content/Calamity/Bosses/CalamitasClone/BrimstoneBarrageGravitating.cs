@@ -136,7 +136,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
             {
                 if (Main.npc[CalamityGlobalNPC.SCal].active)
                 {
-                    if (Main.npc[CalamityGlobalNPC.SCal].ModNPC<SupremeCalamitas>().cirrus)
+                    if (Main.npc[CalamityGlobalNPC.SCal].ModNPC<SupremeCalamitas>().permafrost)
                         lightColor.B = (byte)(255 * Projectile.Opacity);
                 }
             }

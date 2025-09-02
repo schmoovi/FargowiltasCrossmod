@@ -42,12 +42,12 @@
   "CannonLaserbeamDamage": {
     "EternityRevValue": 500.0,
     "EternityDeathValue": 500.0,
-    "MasochistValue": 500.0
+    "MasochistValue": 750.0
   },
   "CoreLaserbeamDamage": {
     "EternityRevValue": 540.0,
     "EternityDeathValue": 540.0,
-    "MasochistValue": 540.0
+    "MasochistValue": 810.0
   },
   "DeathAnimation_DeathDelay": {
     "EternityRevValue": 42.0,
@@ -127,7 +127,7 @@
   "KatanaDamage": {
     "EternityRevValue": 375.0,
     "EternityDeathValue": 375.0,
-    "MasochistValue": 375.0
+    "MasochistValue": 562.0
   },
   "KatanaSlashes_AttackCycleTime": {
     "EternityRevValue": 96.0,
@@ -187,12 +187,12 @@
   "LingeringPlasmaDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "MissileDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "NukeAoEAndPlasmaBlasts_AttackTransitionDelay": {
     "EternityRevValue": 72.0,
@@ -217,7 +217,7 @@
   "NukeExplosionDamage": {
     "EternityRevValue": 675.0,
     "EternityDeathValue": 675.0,
-    "MasochistValue": 675.0
+    "MasochistValue": 1000.0
   },
   "NukeWeaponDamage": {
     "EternityRevValue": 0.0,
@@ -227,7 +227,7 @@
   "PlasmaJetDamage": {
     "EternityRevValue": 420.0,
     "EternityDeathValue": 420.0,
-    "MasochistValue": 420.0
+    "MasochistValue": 630.0
   },
   "SpawnAnimation_EnterForegroundTime": {
     "EternityRevValue": 35.0,
@@ -237,16 +237,16 @@
   "SmallLaserDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "SmallTeslaSphereDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "TeslaBurstDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   }
 }

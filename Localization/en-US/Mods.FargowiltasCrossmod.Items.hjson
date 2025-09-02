@@ -287,7 +287,7 @@ AerospecEnchant: {
 	DisplayName: Aerospec Enchantment
 	Tooltip:
 		'''
-		Gain +5% critical strike chance and summon damage whenever you use a jump or double jump
+		Gain +5% critical strike chance and summon damage whenever you use a jump or double jump, up to 15%
 		This bonus lasts until your jumps are reset or a mount is used
 		'''
 	CritUp: +{0}% crit
@@ -324,7 +324,7 @@ WulfrumEnchant: {
 		The drone scans enemies it collides with
 		Scanning enemies tells you their debuff weaknesses and resistances
 		Green means weakness, red means resistance
-		Scanned enemies also take extra flat damage over time when afflicted with any debuff
+		Scanned enemies also take an extra 15 damage per second when afflicted with any debuff
 		'''
 }
 
@@ -334,9 +334,9 @@ GaleForce: {
 		'''
 		Grants unlimited jumps in the air
 		Disables wings if this effect is enabled
-		[i:FargowiltasCrossmod/DesertProwlerEnchant] Hold W while jumping to launch upward quickly
-		[i:FargowiltasCrossmod/DesertProwlerEnchant] Hold S while jumping to dive downwards
-		[i:FargowiltasCrossmod/SnowRuffianEnchant] Hold W to slow fall
+		[i:FargowiltasCrossmod/DesertProwlerEnchant] Hold UP while jumping to launch upward quickly
+		[i:FargowiltasCrossmod/DesertProwlerEnchant] Hold DOWN while jumping to dive downwards
+		[i:FargowiltasCrossmod/SnowRuffianEnchant] Hold UP to slow fall
 		[i:FargowiltasCrossmod/VictideEnchant] Holding jump generates sharp spines attached to you
 		[i:FargowiltasCrossmod/VictideEnchant] Once 6 spines are spawned, the next jump launches them out to home onto targets
 		[i:FargowiltasCrossmod/SulphurEnchant] Spines inflict Sulphuric Poisoning
@@ -391,7 +391,7 @@ HydrothermicEnchant: {
 	Tooltip:
 		'''
 		Attacking builds up heat
-		At full heat, stop attacking to vent it, increasing damage reduction by up to 30% and firing chaos flares towards your cursor for up to 3 seconds
+		At full heat, stop attacking to vent it, increasing damage reduction by up to 20% and firing chaos flares towards your cursor for up to 3 seconds
 		Getting hit also vents heat, regardless of heat level
 		'''
 }
@@ -432,7 +432,7 @@ StatigelEnchant: {
 		'''
 		Increases your maximum speed
 		Massively decreases your acceleration and deceleration
-		Gain up to +35% increased damage, depending on how fast you're moving
+		Gain up to 25% increased damage, depending on how fast you're moving
 		'''
 }
 
@@ -520,11 +520,6 @@ SeaKing: {
 Bandit: {
 	DisplayName: Bandit
 	Tooltip: "'Anything is a weapon if you throw it hard enough.'"
-}
-
-DrunkPrincess: {
-	DisplayName: Drunk Princess
-	Tooltip: Not gonna copy paste any of these quotes man
 }
 
 BrimstoneWitch: {

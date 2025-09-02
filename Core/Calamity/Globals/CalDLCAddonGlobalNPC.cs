@@ -10,7 +10,7 @@ using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Buffs.Souls;
-using FargowiltasSouls.Content.Projectiles.BossWeapons;
+using FargowiltasSouls.Content.Projectiles.Weapons.FinalUpgrades;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -91,8 +91,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 return npc.Calamity().sulphurPoison;
             if (buffID == ModContent.BuffType<SagePoison>() && npc.Calamity().sagePoisonTime > 0)
                 return npc.Calamity().sagePoisonTime;
-            if (buffID == ModContent.BuffType<KamiFlu>() && npc.Calamity().kamiFlu > 0)
-                return npc.Calamity().kamiFlu;
             if (buffID == ModContent.BuffType<CrushDepth>() && npc.Calamity().cDepth > 0)
                 return npc.Calamity().cDepth;
             if (buffID == ModContent.BuffType<RiptideDebuff>() && npc.Calamity().rTide > 0)
@@ -150,7 +148,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         {
             if (WulfrumScanned >= 0 && HasAnyDoTDebuff(npc))
             {
-                int DoTNormal = 35;
+                int DoTNormal = 30;
                 int DoTForce = 100;
                 Player owner = Main.player[Main.projectile[WulfrumScanned].owner];
                 if (owner != null && owner.active && !owner.dead && owner.ForceEffect<WulfrumEffect>())

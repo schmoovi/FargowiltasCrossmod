@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
-using Fargowiltas.Common.Configs;
+﻿using Fargowiltas.Common.Configs;
 using FargowiltasCrossmod.Content.Common.Projectiles;
 using FargowiltasCrossmod.Core;
 using FargowiltasSouls;
-using FargowiltasSouls.Assets.ExtraTextures;
+using FargowiltasSouls.Assets.Textures;
 using FargowiltasSouls.Content.Buffs.Souls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
@@ -12,6 +10,8 @@ using Luminance.Assets;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -87,7 +87,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.CalamitasClone
             float radius = Projectile.width / 2;
             var target = Main.LocalPlayer;
             var blackTile = TextureAssets.MagicPixel;
-            var diagonalNoise = FargosTextureRegistry.WavyNoise;
+            var diagonalNoise = FargoAssets.WavyNoise;
             var maxOpacity = Projectile.Opacity * 0.2f;
 
             ManagedShader shader = ShaderManager.GetShader("FargowiltasCrossmod.CalcloneWaveShader");

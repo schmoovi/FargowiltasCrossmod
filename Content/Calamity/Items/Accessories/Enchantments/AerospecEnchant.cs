@@ -24,6 +24,7 @@ using FargowiltasCrossmod.Content.Calamity.Toggles;
 using CalamityMod;
 using FargowiltasSouls.Content.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
+using FargowiltasSouls.Assets.Textures;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 {
@@ -32,12 +33,17 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("AerospecEnchantment")]
     public class AerospecEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             //return FargowiltasCrossmod.EnchantLoadingEnabled;
             return true;
         }
         public override Color nameColor => new Color(153, 200, 193);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -104,7 +110,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                 return;
             }
             int critPerJump = player.ForceEffect<AerospecJumpEffect>() ? 10 : 5;
-            int maxCritJumps = 6;
+            int maxCritJumps = 3;
 
 
             float extraCrit = (mplayer.NumJumpsUsed > maxCritJumps ? maxCritJumps : mplayer.NumJumpsUsed) * critPerJump;

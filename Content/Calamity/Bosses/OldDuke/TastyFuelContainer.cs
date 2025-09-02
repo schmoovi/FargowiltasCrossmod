@@ -100,48 +100,51 @@ public class TastyFuelContainer : ModProjectile
         SoundEngine.PlaySound(SoundID.Item107, Projectile.Center);
         ScreenShakeSystem.StartShakeAtPoint(Projectile.Center, 4f);
 
-        // Emit a radial spray of short-lived gas particles that compose a cloud.
-        for (int i = 0; i < 80; i++)
+        if (Main.netMode != NetmodeID.Server)
         {
-            float gasScale = Main.rand.NextFloat(1f, 1.4f);
-            float gasOpacity = Main.rand.NextFloat(0.15f, 0.2f);
-            Color gasColor = Color.Lerp(new Color(191, 199, 9), new Color(124, 239, 87), Main.rand.NextFloat()) * gasOpacity;
-            gasColor.A /= 2;
-
-            Vector2 gasVelocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(2.4f, 15f);
-            NuclearGasParticle gas = new NuclearGasParticle(Projectile.Center, gasVelocity, gasColor, gasScale, Main.rand.Next(40, 90));
-            gas.Spawn();
-        }
-
-        // Emit bits of slightly lime-tinted glass shards, since this is a fuel container that has been shattered.
-        for (int i = 0; i < 24; i++)
-        {
-            Vector2 glassSpawnPosition = Projectile.Center + Main.rand.NextVector2Circular(10f, 10f);
-            Vector2 glassVelocity = Main.rand.NextVector2Circular(20f, 20f);
-            Dust glass = Dust.NewDustPerfect(glassSpawnPosition, DustID.Glass, glassVelocity);
-            glass.color = Color.Lerp(Color.White, Color.YellowGreen, Main.rand.NextFloat(0.25f));
-            glass.scale = Main.rand.NextFloat(1f, 1.6f);
-            glass.noGravity = glass.velocity.Length() >= 13.5f;
-        }
-
-        // Emit fire.
-        for (int i = 0; i < 5; i++)
-        {
-            float squish = Main.rand.NextFloat(0f, 0.35f);
-            float fireScale = Main.rand.NextFloat(50f, 140f);
-            Vector2 fireVelocity = Main.rand.NextVector2Circular(30f, 30f);
-            Color fireColor = new Color(Main.rand.Next(91, 170), 255, 9);
-            OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(Projectile.Center, fireVelocity, new Vector2(1f - squish, 1f) * fireScale, fireColor);
-        }
-
-        // Emit sparks.
-        if (Main.netMode != NetmodeID.MultiplayerClient)
-        {
-            for (int i = 0; i < 3; i++)
+            // Emit a radial spray of short-lived gas particles that compose a cloud.
+            for (int i = 0; i < 80; i++)
             {
-                int sparkLifetime = Main.rand.Next(9, 20);
-                Vector2 sparkRange = Main.rand.NextVector2Unit() * Main.rand.NextFloat(50f, 210f);
-                LumUtils.NewProjectileBetter(Projectile.GetSource_FromAI(), Projectile.Center, sparkRange, ModContent.ProjectileType<FuelSpark>(), 0, 0f, -1, sparkLifetime);
+                float gasScale = Main.rand.NextFloat(1f, 1.4f);
+                float gasOpacity = Main.rand.NextFloat(0.15f, 0.2f);
+                Color gasColor = Color.Lerp(new Color(191, 199, 9), new Color(124, 239, 87), Main.rand.NextFloat()) * gasOpacity;
+                gasColor.A /= 2;
+
+                Vector2 gasVelocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(2.4f, 15f);
+                NuclearGasParticle gas = new NuclearGasParticle(Projectile.Center, gasVelocity, gasColor, gasScale, Main.rand.Next(40, 90));
+                gas.Spawn();
+            }
+
+            // Emit bits of slightly lime-tinted glass shards, since this is a fuel container that has been shattered.
+            for (int i = 0; i < 24; i++)
+            {
+                Vector2 glassSpawnPosition = Projectile.Center + Main.rand.NextVector2Circular(10f, 10f);
+                Vector2 glassVelocity = Main.rand.NextVector2Circular(20f, 20f);
+                Dust glass = Dust.NewDustPerfect(glassSpawnPosition, DustID.Glass, glassVelocity);
+                glass.color = Color.Lerp(Color.White, Color.YellowGreen, Main.rand.NextFloat(0.25f));
+                glass.scale = Main.rand.NextFloat(1f, 1.6f);
+                glass.noGravity = glass.velocity.Length() >= 13.5f;
+            }
+
+            // Emit fire.
+            for (int i = 0; i < 5; i++)
+            {
+                float squish = Main.rand.NextFloat(0f, 0.35f);
+                float fireScale = Main.rand.NextFloat(50f, 140f);
+                Vector2 fireVelocity = Main.rand.NextVector2Circular(30f, 30f);
+                Color fireColor = new Color(Main.rand.Next(91, 170), 255, 9);
+                OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(Projectile.Center, fireVelocity, new Vector2(1f - squish, 1f) * fireScale, fireColor);
+            }
+
+            // Emit sparks.
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    int sparkLifetime = Main.rand.Next(9, 20);
+                    Vector2 sparkRange = Main.rand.NextVector2Unit() * Main.rand.NextFloat(50f, 210f);
+                    LumUtils.NewProjectileBetter(Projectile.GetSource_FromAI(), Projectile.Center, sparkRange, ModContent.ProjectileType<FuelSpark>(), 0, 0f, -1, sparkLifetime);
+                }
             }
         }
     }

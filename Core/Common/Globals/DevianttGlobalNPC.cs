@@ -1,6 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
-using Fargowiltas.NPCs;
+using Fargowiltas.Content.NPCs;
 //using FargowiltasCrossmod.Content.Thorium.Items.Summons; 
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ using FargowiltasCrossmod.Core.Calamity.Systems;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
 using FargowiltasSouls;
-using Fargowiltas.Items.Summons.Deviantt;
-using Fargowiltas.Items.Tiles;
+using Fargowiltas.Content.Items.Summons.Deviantt;
+using Fargowiltas.Content.Items.Tiles;
 using Fargowiltas;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Localization;

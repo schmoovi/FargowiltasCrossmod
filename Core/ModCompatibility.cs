@@ -9,7 +9,15 @@ public static class ModCompatibility
     {
         public const string Name = "Fargowiltas";
         public static bool Loaded => ModLoader.HasMod(Name);
-        public static Mod Mod => ModLoader.GetMod(Name);
+        private static Mod mod = null;
+        public static Mod Mod
+        {
+            get
+            {
+                mod ??= ModLoader.GetMod(Name);
+                return mod;
+            }
+        }
     }
     public static class SoulsMod
     {
@@ -20,7 +28,7 @@ public static class ModCompatibility
         {
             get
             {
-                mod ??= ModLoader.GetMod(Name) as FargowiltasSouls.FargowiltasSouls;
+                mod ??= (FargowiltasSouls.FargowiltasSouls)ModLoader.GetMod(Name);
                 return mod;
             }
         }
@@ -95,19 +103,7 @@ public static class ModCompatibility
     {
         public static void AdjustValues()
         {
-            if (Calamity.Loaded)
-            {
-                foreach (var entry in SoulsMod.Mod.BossChecklistValues)
-                {
-                    if (entry.Key.Contains("Champion"))
-                    {
-                        SoulsMod.Mod.BossChecklistValues[entry.Key] += 1f;
-                    }
-                }
-                SoulsMod.Mod.BossChecklistValues["CosmosChampion"] = 21.2f;
-                SoulsMod.Mod.BossChecklistValues["AbomBoss"] = 22.6f;
-                SoulsMod.Mod.BossChecklistValues["MutantBoss"] = 25.8f;
-            }
+
         }
     }
 }

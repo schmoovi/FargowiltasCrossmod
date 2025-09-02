@@ -36,6 +36,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("SulphurEnchantment")]
     public class SulphurEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             //return FargowiltasCrossmod.EnchantLoadingEnabled;
@@ -45,7 +46,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 
         public override void SetStaticDefaults()
         {
-
+            base.SetStaticDefaults();
         }
         public override void SetDefaults()
         {
@@ -74,6 +75,19 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             recipe.AddTile(TileID.DemonAltar);
             recipe.Register();
         }
+        public override int DamageTooltip(out DamageClass damageClass, out Color? tooltipColor, out int? scaling)
+        {
+            bool force = Main.LocalPlayer.ForceEffect<SulphurEffect>();
+            damageClass = DamageClass.Default;
+            tooltipColor = null;
+            scaling = (int)Main.LocalPlayer.GetDamage(Main.LocalPlayer.HeldItem.DamageType).ApplyTo(((Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.FindAmmo(Main.LocalPlayer.HeldItem.useAmmo).damage) / 2) + 8);
+            if (force)
+                scaling *= 2;
+            float softcap = force ? 110 : 32;
+            if (scaling > softcap)
+                scaling = (int)(((2 * softcap) + scaling) / 3f);
+            return force ? 100 : 50;
+        }
     }
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
@@ -87,7 +101,15 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override Header ToggleHeader => Header.GetHeader<GaleHeader>();
         public override int ToggleItemType => ModContent.ItemType<SulphurEnchant>();
         public override bool ExtraAttackEffect => true;
-
+        public static int BaseDamage(Player player)
+        {
+            int bubbleDamage = 23;
+            if (player.ForceEffect<SulphurEffect>())
+            {
+                bubbleDamage = 172;
+            }
+            return FargoSoulsUtil.HighestDamageTypeScaling(player, bubbleDamage);
+        }
         public override void PostUpdateEquips(Player player)
         {
             player.GetJumpState<SulphurJump>().Enable();
@@ -131,11 +153,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             if (player.HasEffect<JungleJump>())
                 player.FargoSouls().CanJungleJump = true;
 
-            int bubbleDamage = 80;
-            if (player.ForceEffect<SulphurEffect>())
-            {
-                bubbleDamage = 250;
-            }
+            int bubbleDamage = SulphurEffect.BaseDamage(player);
 
             int offset = player.height;
             if (player.gravDir == -1f)
@@ -159,15 +177,18 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
                     bubble.Kill();
             }
             Vector2 vel = Vector2.UnitY * 2;
-            Projectile proj = Projectile.NewProjectileDirect(player.GetSource_EffectItem<SulphurEffect>(), player.Center, vel, ModContent.ProjectileType<SulphurBubble>(), bubbleDamage, 1, player.whoAmI);
-            if (player.ForceEffect<SulphurEffect>())
+            if (player.whoAmI == Main.myPlayer)
             {
-                for (int i = -1; i <= 1; i += 2)
-                    Projectile.NewProjectileDirect(player.GetSource_EffectItem<SulphurEffect>(), player.Center, Vector2.UnitX * i * 6f + vel, ModContent.ProjectileType<SulphurBubble>(), bubbleDamage, 1, player.whoAmI);
-            }
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                NetMessage.SendData(MessageID.SyncProjectile, number: proj.whoAmI);
+                Projectile proj = Projectile.NewProjectileDirect(player.GetSource_EffectItem<SulphurEffect>(), player.Center, vel, ModContent.ProjectileType<SulphurBubble>(), bubbleDamage, 1, player.whoAmI);
+                if (player.ForceEffect<SulphurEffect>())
+                {
+                    for (int i = -1; i <= 1; i += 2)
+                        Projectile.NewProjectileDirect(player.GetSource_EffectItem<SulphurEffect>(), player.Center, Vector2.UnitX * i * 6f + vel, ModContent.ProjectileType<SulphurBubble>(), bubbleDamage, 1, player.whoAmI);
+                }
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    NetMessage.SendData(MessageID.SyncProjectile, number: proj.whoAmI);
+                }
             }
         }
         public override void ShowVisuals(Player player)

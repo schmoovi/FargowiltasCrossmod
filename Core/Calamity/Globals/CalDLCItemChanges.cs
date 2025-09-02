@@ -22,12 +22,12 @@ using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Tiles.Furniture;
 using Fargowiltas;
 using Fargowiltas.Common.Configs;
-using Fargowiltas.Items.Misc;
-using Fargowiltas.Items.Summons;
-using Fargowiltas.Items.Summons.Deviantt;
-using Fargowiltas.Items.Summons.Mutant;
-using Fargowiltas.Items.Summons.SwarmSummons;
-using Fargowiltas.Items.Summons.VanillaCopy;
+using Fargowiltas.Content.Items.Misc;
+using Fargowiltas.Content.Items.Summons;
+using Fargowiltas.Content.Items.Summons.Deviantt;
+using Fargowiltas.Content.Items.Summons.Mutant;
+using Fargowiltas.Content.Items.Summons.SwarmSummons;
+using Fargowiltas.Content.Items.Summons.VanillaCopy;
 using FargowiltasCrossmod.Content.Calamity;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
@@ -40,7 +40,7 @@ using FargowiltasSouls;
 using FargowiltasSouls.Common;
 using FargowiltasSouls.Content.Items;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
-using FargowiltasSouls.Content.Items.Accessories.Masomode;
+using FargowiltasSouls.Content.Items.Accessories.Eternity;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.Consumables;
 using FargowiltasSouls.Content.Items.Misc;
@@ -223,10 +223,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 {
                     ModContent.GetInstance<Nanotech>().UpdateAccessory(player, hideVisual);
                 }
-                if (player.AddEffect<EclipseMirrorEffect>(item))
-                {
-                    ModContent.GetInstance<EclipseMirror>().UpdateAccessory(player, hideVisual);
-                }
             }
 
             // toggles to Cal accs
@@ -235,12 +231,12 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 player.AddEffect<RampartofDeitiesEffect>(item);
                 if (!player.HasEffect<RampartofDeitiesEffect>())
                     calPlayer.rampartOfDeities = false;
-                player.AddEffect<DefenseStarEffect>(item);
-                if (!player.HasEffect<DefenseStarEffect>())
-                    player.starCloakItem = null;
-                player.AddEffect<FrozenTurtleEffect>(item);
-                if (!player.HasEffect<FrozenTurtleEffect>())
-                    player.ClearBuff(BuffID.IceBarrier);
+                //player.AddEffect<DefenseStarEffect>(item);
+                //if (!player.HasEffect<DefenseStarEffect>())
+                //    player.starCloakItem = null;
+                //player.AddEffect<FrozenTurtleEffect>(item);
+                //if (!player.HasEffect<FrozenTurtleEffect>())
+                //    player.ClearBuff(BuffID.IceBarrier);
 
 
             }
@@ -279,9 +275,13 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             }
             return false;
         }
-        public static int[] SummonsThatDontMeetConditionsButShould = [ModContent.ItemType<SeeFood>(), ModContent.ItemType<FleshyDoll>(), ModContent.ItemType<MechanicalAmalgam>(), ModContent.ItemType<MechEye>(), ModContent.ItemType<PortableCodebreaker>(), ModContent.ItemType<FragilePixieLamp>(), ModContent.ItemType<MechLure>(), ModContent.ItemType<CoffinSummon>(), ModContent.ItemType<DevisCurse>(), ModContent.ItemType<AbomsCurse>(), ModContent.ItemType<MutantsCurse>()];
+        public static int[] SummonsThatDontMeetConditionsButShould = [ ModContent.ItemType<FleshyDoll>(), ModContent.ItemType<MechanicalAmalgam>(), /*ModContent.ItemType<MechEye>(), */ModContent.ItemType<PortableCodebreaker>(), ModContent.ItemType<CrystallineEffigy>(), ModContent.ItemType<MechLure>(), ModContent.ItemType<CoffinSummon>(), ModContent.ItemType<DevisCurse>(), ModContent.ItemType<AbomsCurse>(), ModContent.ItemType<MutantsCurse>()];
         public override void SetDefaults(Item item)
         {
+            if (Fargowiltas.Content.Items.FargoGlobalItem.AlwaysUsableVanillaSummons.Contains(item.type))
+            {
+                item.useAnimation = item.useTime;
+            }
             if (isFargSummon(item))
             {
                 //item.maxStack = 999;
@@ -360,6 +360,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ModContent.ItemType<CelestialOnion>() && !Main.masterMode && WorldSavingSystem.EternityMode)
             {
                 tooltips.Add(new TooltipLine(Mod, "OnionPactUpgrade", $"[c/FF0000:{BalanceLine}]" + Language.GetTextValue($"Mods.FargowiltasCrossmod.EModeBalance.OnionPackUpgrade")));
+            }
+            if (item.type == ModContent.ItemType<MutantsPact>() && !Main.masterMode && WorldSavingSystem.EternityMode)
+            {
+                tooltips.Add(new TooltipLine(Mod, "OnionPactUpgrade", $"[c/FF0000:{BalanceLine}]" + Language.GetTextValue($"Mods.FargowiltasCrossmod.EModeBalance.PactOnionUpgrade")));
             }
 
 
@@ -449,12 +453,16 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         public override void PostUpdate()
         {
             ref bool MutantsPactSlot = ref Player.FargoSouls().MutantsPactSlot;
+            if (MutantsPactSlot)
+            {
+                Player.Calamity().extraAccessoryML = true;
+            }
             if (Player.Calamity().extraAccessoryML && !Main.masterMode && WorldSavingSystem.EternityMode)
             {
                 if (MutantsPactSlot)
                 {
                     MutantPactShouldBeEnabled = true; //store if the slot is enabled
-                    DropPactSlot();
+                    //DropPactSlot();
                     MutantsPactSlot = false; //turn it off since celestial onion slot is replacing it
                 }
             }
@@ -489,12 +497,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 slot.DyeItem = new();
                 //making dummy items because nulling ModAccessorySlot items crashes the game because of course it does
             }
-            ModAccessorySlot eSlot0 = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<EModeAccessorySlot0>().Type, Player);
-            ModAccessorySlot eSlot1 = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<EModeAccessorySlot1>().Type, Player);
-            ModAccessorySlot eSlot2 = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<EModeAccessorySlot2>().Type, Player);
-            DropSlot(ref eSlot0);
-            DropSlot(ref eSlot1);
-            DropSlot(ref eSlot2);
+            ModAccessorySlot eSlot = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<EModeAccessorySlot>().Type, Player);
+            DropSlot(ref eSlot);
         }
     }
 }

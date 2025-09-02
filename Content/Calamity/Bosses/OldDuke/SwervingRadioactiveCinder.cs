@@ -62,20 +62,23 @@ public class SwervingRadioactiveCinder : ModProjectile, IPixelatedPrimitiveRende
 
         // Emit fire particles in accordance with this cinder's hitbox.
         float fireReleaseChance = Utils.Remap(Projectile.velocity.Length(), 2f, 9.5f, 1f, 0.04f);
-        if (Main.rand.NextBool(fireReleaseChance))
+        if (Main.netMode != NetmodeID.Server)
         {
-            for (int i = 0; i < 2; i++)
+            if (Main.rand.NextBool(fireReleaseChance))
             {
-                float squish = Main.rand.NextFloat(0.1f, 0.4f);
-                float fireScale = Projectile.width * Projectile.scale;
-                Vector2 fireSpawnPosition = Projectile.Center;
+                for (int i = 0; i < 2; i++)
+                {
+                    float squish = Main.rand.NextFloat(0.1f, 0.4f);
+                    float fireScale = Projectile.width * Projectile.scale;
+                    Vector2 fireSpawnPosition = Projectile.Center;
 
-                float spinInterpolant = LumUtils.InverseLerp(8f, 4f, Projectile.velocity.Length());
-                fireSpawnPosition += Main.rand.NextVector2Circular(0.4f, 0.4f) * Projectile.width * Projectile.scale * spinInterpolant;
+                    float spinInterpolant = LumUtils.InverseLerp(8f, 4f, Projectile.velocity.Length());
+                    fireSpawnPosition += Main.rand.NextVector2Circular(0.4f, 0.4f) * Projectile.width * Projectile.scale * spinInterpolant;
 
-                Vector2 fireVelocity = Projectile.SafeDirectionTo(fireSpawnPosition).RotatedBy(spinInterpolant * MathHelper.PiOver2) * Main.rand.NextFloat(10f);
-                Color fireColor = new Color(Main.rand.Next(91, 170), 255, 9);
-                OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(fireSpawnPosition, fireVelocity, new Vector2(1f - squish, 1f) * fireScale, fireColor);
+                    Vector2 fireVelocity = Projectile.SafeDirectionTo(fireSpawnPosition).RotatedBy(spinInterpolant * MathHelper.PiOver2) * Main.rand.NextFloat(10f);
+                    Color fireColor = new Color(Main.rand.Next(91, 170), 255, 9);
+                    OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(fireSpawnPosition, fireVelocity, new Vector2(1f - squish, 1f) * fireScale, fireColor);
+                }
             }
         }
         if (Main.rand.NextBool(fireReleaseChance * 6f))

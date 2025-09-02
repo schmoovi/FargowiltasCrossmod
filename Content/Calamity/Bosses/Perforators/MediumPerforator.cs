@@ -41,6 +41,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         {
             if (!WorldSavingSystem.EternityMode) return;
             entity.lifeMax = 5000;
+            entity.damage = 60;
             entity.Opacity = 1f;
             entity.CalamityDLC().ImmuneToAllDebuffs = true;
         }

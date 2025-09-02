@@ -7,7 +7,7 @@ using CalamityMod.Projectiles.Boss;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using CalamityMod.World;
-using Fargowiltas.Items.Summons;
+using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
 using FargowiltasSouls;
 using Microsoft.Xna.Framework;

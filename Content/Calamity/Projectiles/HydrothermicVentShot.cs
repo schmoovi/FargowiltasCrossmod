@@ -1,12 +1,12 @@
-﻿using System;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Dusts;
-using FargowiltasSouls.Assets.ExtraTextures;
 using FargowiltasSouls;
+using FargowiltasSouls.Assets.Textures;
 using Luminance.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
@@ -105,7 +105,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
         public void RenderPixelatedPrimitives(SpriteBatch spriteBatch)
         {
             ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.BlobTrail");
-            FargoSoulsUtil.SetTexture1(FargosTextureRegistry.FadedStreak.Value);
+            FargoSoulsUtil.SetTexture1(FargoAssets.FadedStreak.Value);
             PrimitiveRenderer.RenderTrail(Projectile.oldPos, new(WidthFunction, ColorFunction, _ => Projectile.Size * 0.5f, Pixelate: true, Shader: shader), 44);
         }
     }

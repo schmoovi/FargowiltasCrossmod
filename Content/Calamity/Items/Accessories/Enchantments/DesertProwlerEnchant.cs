@@ -34,12 +34,17 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("DesertProwlerEnchantment")]
     public class DesertProwlerEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             //return FargowiltasCrossmod.EnchantLoadingEnabled;
             return true;
         }
         public override Color nameColor => new Color(102, 89, 54);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -187,7 +192,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             
             if (Collision.SolidCollision(player.BottomLeft, player.width, 6, true) && cplayer.ProwlerDiveTimer > 0)
             {
-                cplayer.ProwlerDiveTimer = 0;
+                cplayer.ProwlerDiveTimer = -60;
                 SoundEngine.PlaySound(SoundID.Item14, player.Center);
                 PushNpcs(player, true);
                 for (int i = (int)player.Bottom.X - 50; i < (int)player.Bottom.X + 50; i += 5)

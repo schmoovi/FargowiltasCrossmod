@@ -1,4 +1,5 @@
-# FargowiltasCrossmod
+# Calamity - Fargo's Souls DLC
+## FargowiltasCrossmod
 
 Serves to make Fargo's Souls Mod's Eternity Difficulty function well with Calamity's difficulties, fixes bugs between the mods, and provide balance/progression changes across the mods.
 Officially maintained by Fargo's Mods developers.

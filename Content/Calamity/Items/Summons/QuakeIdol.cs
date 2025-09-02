@@ -1,6 +1,6 @@
 ﻿
 using CalamityMod.NPCs.NormalNPCs;
-using Fargowiltas.Items.Summons;
+using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
 using Terraria;
 using Terraria.ModLoader;

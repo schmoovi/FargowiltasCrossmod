@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Items.SummonItems;
 using CalamityMod.NPCs.StormWeaver;
-using Fargowiltas.Items.Summons;
+using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
 using FargowiltasSouls;
 using Microsoft.Xna.Framework;

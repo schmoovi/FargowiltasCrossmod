@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Systems;
 using CalamityMod.World;
-using Fargowiltas.Projectiles;
+using Fargowiltas.Content.Projectiles;
 using FargowiltasCrossmod.Core.Calamity.Systems;
 using FargowiltasSouls.Content.NPCs;
 using FargowiltasSouls.Core.Systems;
@@ -53,7 +53,7 @@ namespace FargowiltasCrossmod.Core.Calamity
                     WorldSavingSystem.ShouldBeEternityMode = emode;
                 }
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    PacketManager.SendPacket<EternityDeathPacket>();
+                    PacketManager.SendPacket<EternityCalPacket>();
             }
         }
 

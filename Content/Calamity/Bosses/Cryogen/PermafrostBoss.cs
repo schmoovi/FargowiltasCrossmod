@@ -27,7 +27,7 @@ using System.IO;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasCrossmod.Core.Calamity.Globals;
 using CalamityMod.Events;
-using FargowiltasSouls.Content.Buffs.Masomode;
+using FargowiltasSouls.Content.Buffs.Eternity;
 using Luminance.Common.Utilities;
 
 namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
@@ -57,7 +57,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.boss = true;
-            NPC.damage = 70;
+            NPC.damage = 77;
             Music = MusicLoader.GetMusicSlot("FargowiltasCrossmod/Assets/Music/Niflheimr");
 
             if (BossRushEvent.BossRushActive)
@@ -240,7 +240,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
             Main.LocalPlayer.ZoneSnow = true;
             if (Main.IsItRaining && DLCUtils.HostCheck)
                 Main.StopRain();
-            Main.LocalPlayer.buffImmune[ModContent.BuffType<HypothermiaBuff>()] = true;
+
+            if (Main.dayTime)
+                Main.fastForwardTimeToDusk = true;
+            else if (!Main.fastForwardTimeToDusk && Main.time >= Main.nightLength / 2)
+                Main.time = Main.nightLength / 2;
 
             int n = NPC.FindFirstNPC(ModContent.NPCType<DILF>());
             if (n != -1 && n != Main.maxNPCs)

@@ -11,7 +11,6 @@ using FargowiltasSouls.Content.Items.Materials;
 using Terraria.ID;
 using FargowiltasSouls.Content.Items;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
-using Fargowiltas.Items.Tiles;
 using CalamityMod.Rarities;
 using Terraria.Localization;
 using CalamityMod.Items.Materials;
@@ -20,6 +19,7 @@ using FargowiltasCrossmod.Core;
 using Terraria.DataStructures;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasCrossmod.Content.Calamity.Toggles;
+using Fargowiltas.Content.Items.Tiles;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories
 {

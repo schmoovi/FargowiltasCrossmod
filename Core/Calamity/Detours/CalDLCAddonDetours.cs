@@ -15,15 +15,18 @@ using FargowiltasSouls.Content.Items;
 using System.Reflection;
 using CalamityMod.CalPlayer;
 
-namespace FargowiltasCrossmod.Core.Calamity.Systems
+namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class CalDLCAddonDetours : ModSystem, ICustomDetourProvider
     {
-        //private static readonly MethodInfo AdrenalineEnabled_Method = typeof(CalamityPlayer).GetProperty("AdrenalineEnabled").GetGetMethod();
+        #pragma warning disable CS8601
+        #region MethodInfo
+        #endregion
 
-        //public delegate bool Orig_AdrenalineEnabled(CalamityPlayer self);
+        #region Orig
+        #endregion
 
         public override void Load()
         {
@@ -34,7 +37,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
 
         void ICustomDetourProvider.ModifyMethods()
         {
-            //HookHelper.ModifyMethodWithDetour(AdrenalineEnabled_Method, AdrenalineEnabled_Detour);
+            
         }
 
         private void RefreshDoubleJumps_Detour(On_Player.orig_RefreshDoubleJumps orig, Player self)

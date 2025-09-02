@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Items.DraedonMisc;
 using CalamityMod.NPCs.ExoMechs;
-using Fargowiltas.Items.Summons;
+using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
 using Microsoft.Xna.Framework;
 using Terraria;

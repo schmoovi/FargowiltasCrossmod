@@ -307,7 +307,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.SlimeGod
                             float speed = Main.rand.NextFloat(4, 6);
                             if (DLCUtils.HostCheck)
                             {
-                                Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center + dir * npc.height / 2, dir * speed, type, npc.GetProjectileDamage(type), 2f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center + dir * npc.height / 2, dir * speed, type, FargoSoulsUtil.ScaledProjectileDamage(npc.defDamage), 2f, Main.myPlayer);
                             }
                         }
                     }
@@ -331,7 +331,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.SlimeGod
                             float speed = Main.rand.NextFloat(4, 6);
                             if (DLCUtils.HostCheck)
                             {
-                                Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center + dir * npc.height / 2, dir * speed, type, npc.GetProjectileDamage(type), 2f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center + dir * npc.height / 2, dir * speed, type, FargoSoulsUtil.ScaledProjectileDamage(npc.defDamage), 2f, Main.myPlayer);
                             }
                         }
                     }

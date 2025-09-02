@@ -24,7 +24,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             //also decreases defense, DR, and cripples life regen
-            player.FargoSouls().noDodge = true;
+            //player.FargoSouls().noDodge = true;
             player.FargoSouls().noSupersonic = true;
             player.CalamityDLC().CalamitousPresence = true;
             player.FargoSouls().GrazeRadius *= 0.5f;

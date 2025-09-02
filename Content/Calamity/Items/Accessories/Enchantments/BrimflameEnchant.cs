@@ -40,6 +40,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class BrimflameEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
@@ -47,6 +48,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             //return true;
         }
         public override Color nameColor => new Color(240, 100, 75);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -91,7 +96,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         {
             CalDLCAddonPlayer modplayer = player.CalamityAddon();
             
-            if (modplayer.BrimflameShootingTimer > 0 )
+            if (modplayer.BrimflameShootingTimer > 0 && player.whoAmI == Main.myPlayer)
             {
                 for (int i = 0; i < 10; i++)
                 {

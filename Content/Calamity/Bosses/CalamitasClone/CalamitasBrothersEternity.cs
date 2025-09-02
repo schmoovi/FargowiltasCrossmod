@@ -18,7 +18,6 @@ using FargowiltasSouls.Content.Bosses.MutantBoss;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Patreon.DanielTheRobot;
 using FargowiltasSouls.Content.Projectiles.Masomode;
-using FargowiltasSouls.Content.Projectiles.Souls;
 using FargowiltasSouls.Core.NPCMatching;
 using FargowiltasSouls.Core.Systems;
 using Luminance.Common.Utilities;

@@ -1,5 +1,5 @@
 ﻿using FargowiltasCrossmod.Core.Calamity;
-using FargowiltasCrossmod.Core.Common.InverseKinematics;
+using FargowiltasSouls.Common.InverseKinematics;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -139,12 +139,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
             }
                 
             Vector2 idealDefaultStepPosition = PerfsEternity.FindGround((LegCenter(hive) + stepOffset).ToTileCoordinates(), gravityDirection, "A").ToWorldCoordinates(8f, -16f);
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 100; i++)
             {
                 if (Collision.CanHitLine(LegCenter(hive), 1, 1, idealDefaultStepPosition, 1, 1) && !Collision.SolidCollision(idealDefaultStepPosition, 1, 1))
+                {
                     break;
-
-                idealDefaultStepPosition -= gravityDirection * 8f;
+                }
+                    
+                idealDefaultStepPosition -= gravityDirection * 16f;
             }
 
             // Make the step position interpolate towards its ideal. This helps allow for the legs to reorient naturally and prevents edge-cases where the leg snaps to a new position.

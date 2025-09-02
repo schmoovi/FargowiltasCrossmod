@@ -24,6 +24,7 @@ using FargowiltasSouls.Content.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
+using FargowiltasSouls.Content.Items.Accessories.Eternity;
 
 namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
 {
@@ -32,6 +33,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
     [LegacyName("ExplorationForce")]
     public class GaleForce : BaseForce
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Forces/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             //return FargowiltasCrossmod.EnchantLoadingEnabled;
@@ -58,7 +60,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
             recipe.AddIngredient(ModContent.ItemType<StatigelEnchant>(), 1);
             recipe.AddIngredient(ModContent.ItemType<SulphurEnchant>(), 1);
             recipe.AddIngredient(ModContent.ItemType<VictideEnchant>(), 1);
-            recipe.AddTile(ModContent.TileType<Fargowiltas.Items.Tiles.CrucibleCosmosSheet>());
+            recipe.AddTile(ModContent.TileType<Fargowiltas.Content.Items.Tiles.CrucibleCosmosSheet>());
             recipe.Register();
         }
         

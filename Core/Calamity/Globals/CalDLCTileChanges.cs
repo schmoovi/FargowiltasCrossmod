@@ -31,10 +31,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
 
             Player lp = Main.LocalPlayer;
 
-            int blueCandleBuff = ModContent.BuffType<CirrusBlueCandleBuff>();
-            int purpleCandleBuff = ModContent.BuffType<CirrusPurpleCandleBuff>();
-            int pinkCandleBuff = ModContent.BuffType<CirrusPinkCandleBuff>();
-            int yellowCandleBuff = ModContent.BuffType<CirrusYellowCandleBuff>();
+            int blueCandleBuff = ModContent.BuffType<BlueCandleBuff>();
+            int purpleCandleBuff = ModContent.BuffType<PurpleCandleBuff>();
+            int pinkCandleBuff = ModContent.BuffType<PinkCandleBuff>();
+            int yellowCandleBuff = ModContent.BuffType<YellowCandleBuff>();
 
             int buff = 0;
             SoundStyle? sound = null;

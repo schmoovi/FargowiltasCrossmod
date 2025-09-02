@@ -12,7 +12,7 @@ namespace FargowiltasCrossmod.Content.Calamity.NPCs
 {
     public  class MutantBR : ModNPC
     {
-        public override string Texture => "Fargowiltas/NPCs/Mutant";
+        public override string Texture => "Fargowiltas/Content/NPCs/Mutant";
         public override void SetStaticDefaults()
         {
             NPCID.Sets.TrailingMode[Type] = 2;

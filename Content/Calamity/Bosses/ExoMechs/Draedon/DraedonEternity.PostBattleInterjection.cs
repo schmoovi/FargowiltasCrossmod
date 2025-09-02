@@ -77,7 +77,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Draedon
                 foreach (Player player in Main.ActivePlayers)
                 {
                     if (player.WithinRange(NPC.Center, 6700f))
+                    {
                         Utilities.NewProjectileBetter(NPC.GetSource_FromAI(), player.Center - Vector2.UnitY * 800f, Vector2.Zero, ModContent.ProjectileType<DraedonLootCrate>(), 0, 0f, player.whoAmI);
+                    }
+                        
                 }
             }
 

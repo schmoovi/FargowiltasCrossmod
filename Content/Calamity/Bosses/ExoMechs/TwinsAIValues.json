@@ -2,7 +2,7 @@
   "BasicShotDamage": {
     "EternityRevValue": 300.0,
     "EternityDeathValue": 300.0,
-    "MasochistValue": 300.0
+    "MasochistValue": 450.0
   },
   "CloseShots_ApolloFireballShootSpeed": {
     "EternityRevValue": 33.0,
@@ -265,9 +265,9 @@
     "MasochistValue": 51.0
   },
   "MachineGunLasers_AttackDelay": {
-    "EternityRevValue": 60.0,
-    "EternityDeathValue": 60.0,
-    "MasochistValue": 60.0
+    "EternityRevValue": 90.0,
+    "EternityDeathValue": 90.0,
+    "MasochistValue": 90.0
   },
   "MachineGunLasers_AttackDuration": {
     "EternityRevValue": 600.0,

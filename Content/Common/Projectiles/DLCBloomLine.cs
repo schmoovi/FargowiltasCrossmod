@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using FargowiltasCrossmod.Core;
+using FargowiltasSouls.Assets.Textures;
 using FargowiltasSouls.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -9,7 +10,7 @@ namespace FargowiltasCrossmod.Content.Common.Projectiles
 {
     public class DLCBloomLine : BloomLine
     {
-        public override string Texture => "FargowiltasSouls/Content/Projectiles/BloomLine";
+        public override string Texture => FargoAssets.GetAssetString("Content/Projectiles", "BloomLine");
 
         private int counter;
 

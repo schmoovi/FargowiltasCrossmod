@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.TreasureBags;
 using FargowiltasCrossmod.Core;
+using FargowiltasSouls;
 using Luminance.Common.DataStructures;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
@@ -44,7 +45,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Projectiles
 
             if (Projectile.WithinRange(Recipient.Center, 25f))
             {
-                if (Main.myPlayer == Projectile.owner)
+                if (FargoSoulsUtil.HostCheck)
                     Item.NewItem(Projectile.GetSource_FromThis(), Recipient.Hitbox, ModContent.ItemType<DraedonBag>(), noGrabDelay: true);
 
                 Projectile.Kill();

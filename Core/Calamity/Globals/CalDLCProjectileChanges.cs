@@ -13,7 +13,7 @@ using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
 using CalamityMod.World;
-using Fargowiltas.NPCs;
+using Fargowiltas.Content.NPCs;
 using Fargowiltas;
 using FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind;
 using FargowiltasCrossmod.Content.Calamity.Projectiles;
@@ -26,10 +26,8 @@ using FargowiltasSouls.Content.Bosses.DeviBoss;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Projectiles;
-using FargowiltasSouls.Content.Projectiles.BossWeapons;
 using FargowiltasSouls.Content.Projectiles.Deathrays;
 using FargowiltasSouls.Content.Projectiles.Masomode;
-using FargowiltasSouls.Content.Projectiles.Souls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Globals;
 using FargowiltasSouls.Core.ModPlayers;
@@ -39,6 +37,9 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.Plantera;
+using FargowiltasSouls.Content.Projectiles.Eternity.Environment;
+using FargowiltasSouls.Content.Projectiles.Accessories;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
@@ -252,6 +253,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         break;
                     case ProjectileID.CultistBossIceMist:
                         {
+                            /*
                             if (CalDLCWorldSavingSystem.EternityDeath && projectile.ai[1] == 1)
                             {
                                 int p = Player.FindClosest(projectile.position, projectile.width, projectile.height);
@@ -266,6 +268,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                                     projectile.velocity = new Vector2(projectile.velocity.Length(), 0).RotatedBy(projectile.velocity.ToRotation().AngleTowards(projectile.AngleTo(Main.player[p].Center), 0.04f));
                                 }
                             }
+                            */
                         }
                         break;
                 }

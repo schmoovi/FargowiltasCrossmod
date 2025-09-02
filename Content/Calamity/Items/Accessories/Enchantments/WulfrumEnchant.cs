@@ -28,12 +28,17 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("WulfrumEnchantment")]
     public class WulfrumEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             //return FargowiltasCrossmod.EnchantLoadingEnabled;
             return true;
         }
         public override Color nameColor => new Color(206, 201, 170);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -73,6 +78,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         public override bool MinionEffect => true;
         public override void PostUpdateEquips(Player player)
         {
+            if (player.whoAmI != Main.myPlayer)
+                return;
             if (player.ownedProjectileCounts[ModContent.ProjectileType<WulfrumScanner>()] < 1)
             {
                 Projectile.NewProjectile(player.GetSource_EffectItem<WulfrumEffect>(), player.Center, Vector2.Zero, ModContent.ProjectileType<WulfrumScanner>(), 0, 0, player.whoAmI);

@@ -195,6 +195,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ComboAttacks
                 hand.Frame += 24;
                 hand.EnergyDrawer.chargeProgress = 0f;
             }
+            else
+                handNPC.damage = 0;
 
             handNPC.SmoothFlyNear(hoverDestination, 0.35f, 0.65f);
 

@@ -58,9 +58,9 @@ namespace FargowiltasCrossmod.Core.Common
             SetFactory itemFactory = ItemID.Sets.Factory;
             Items.ChampionTierFargoWeapon = itemFactory.CreateBoolSet(false,
                 ItemType<EaterLauncher>(),
-                ItemType<FleshCannon>(),
+                ItemType<Regurgitator>(),
                 ItemType<HellZone>(),
-                ItemType<MechanicalLeashOfCthulhu>(),
+                ItemType<LeashofCthulhu>(),
                 ItemType<SlimeSlingingSlasher>(),
                 ItemType<TheBigSting>(),
                 ItemType<BigBrainBuster>(),
@@ -70,12 +70,12 @@ namespace FargowiltasCrossmod.Core.Common
                 ItemType<DeviousAestheticus>()
             );
             Items.AbomTierFargoWeapon = itemFactory.CreateBoolSet(false,
-                ItemType<DragonBreath2>(),
-                ItemType<DestroyerGun2>(),
-                ItemType<GolemTome2>(),
+                ItemType<DragonsDemise>(),
+                ItemType<DestructionCannon>(),
+                ItemType<Landslide>(),
                 ItemType<GeminiGlaives>(),
                 ItemType<Blender>(),
-                ItemType<RefractorBlaster2>(),
+                ItemType<DiffractorBlaster>(),
                 ItemType<NukeFishron>(),
                 ItemType<StaffOfUnleashedOcean>(),
                 ItemType<TheDestroyer>(),

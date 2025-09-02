@@ -32,12 +32,17 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class AstralEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return FargowiltasCrossmod.EnchantLoadingEnabled;
             //return true;
         }
         public override Color nameColor => new Color(153, 200, 193);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -81,6 +86,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
         
         public override void PostUpdateEquips(Player player)
         {
+            if (player.whoAmI != Main.myPlayer)
+                return;
             if (player.ownedProjectileCounts[ModContent.ProjectileType<AstralTrailStar>()] == 0)
             {
                 int damage = player.ForceEffect<AstralEffect>() ? 100 : 50;

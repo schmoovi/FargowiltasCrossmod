@@ -2,6 +2,7 @@
 using CalamityMod.Projectiles.Summon;
 using FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments;
 using FargowiltasSouls;
+using FargowiltasSouls.Assets.Textures;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,7 +35,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Projectiles
         public override bool PreDraw(ref Color lightColor)
         {
             Asset<Texture2D> t = TextureAssets.Projectile[Type];
-            Asset<Texture2D> light = ModContent.Request<Texture2D>("FargowiltasSouls/Assets/ExtraTextures/AdditiveTextures/Bloom");
+            Asset<Texture2D> light = FargoAssets.BloomTexture;
             Player owner = Main.player[Projectile.owner];
             if (owner == null || owner.dead || !owner.active)
             {

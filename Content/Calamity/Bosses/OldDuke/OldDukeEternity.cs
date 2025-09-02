@@ -317,15 +317,18 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.OldDuke
                     break;
             }
 
-            ManagedScreenFilter rainOverlay = ShaderManager.GetFilter("FargowiltasCrossmod.OldDukeRainShader");
-            rainOverlay.TrySetParameter("rainColor", new Color(120, 240, 40).ToVector4() * 0.4f);
-            rainOverlay.TrySetParameter("screenCoordsOffset", Main.screenPosition / Main.ScreenSize.ToVector2());
-            rainOverlay.TrySetParameter("rainOpacity", OldDukeSky.RainBrightnessFactor * 0.32f);
-            rainOverlay.TrySetParameter("zoom", Main.GameViewMatrix.Zoom);
-            rainOverlay.TrySetParameter("rainAngle", OldDukeSky.RainAngle);
-            rainOverlay.TrySetParameter("time", OldDukeSky.RainTimer);
-            rainOverlay.SetTexture(MiscTexturesRegistry.WavyBlotchNoise.Value, 1, SamplerState.LinearWrap);
-            rainOverlay.Activate();
+            if (Main.netMode != NetmodeID.Server)
+            {
+                ManagedScreenFilter rainOverlay = ShaderManager.GetFilter("FargowiltasCrossmod.OldDukeRainShader");
+                rainOverlay.TrySetParameter("rainColor", new Color(120, 240, 40).ToVector4() * 0.4f);
+                rainOverlay.TrySetParameter("screenCoordsOffset", Main.screenPosition / Main.ScreenSize.ToVector2());
+                rainOverlay.TrySetParameter("rainOpacity", OldDukeSky.RainBrightnessFactor * 0.32f);
+                rainOverlay.TrySetParameter("zoom", Main.GameViewMatrix.Zoom);
+                rainOverlay.TrySetParameter("rainAngle", OldDukeSky.RainAngle);
+                rainOverlay.TrySetParameter("time", OldDukeSky.RainTimer);
+                rainOverlay.SetTexture(MiscTexturesRegistry.WavyBlotchNoise.Value, 1, SamplerState.LinearWrap);
+                rainOverlay.Activate();
+            }
 
             AITimer++;
             return false;
@@ -339,12 +342,14 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.OldDuke
         {
             if (Collision.SolidCollision(MouthPosition - Vector2.One * 36f, 18, 18))
                 return;
-
-            for (int i = 0; i < 9; i++)
+            if (Main.netMode != NetmodeID.Server)
             {
-                float vomitSpeed = MathF.Max(Main.rand.NextFloat(9f, 14f), NPC.velocity.Length());
-                Vector2 vomitVelocity = NPC.SafeDirectionTo(MouthPosition).RotatedByRandom(0.1f) * vomitSpeed + Main.rand.NextVector2Circular(5f, 5f) * vomitScaleFactor;
-                ModContent.GetInstance<BileMetaball>().CreateParticle(MouthPosition, vomitVelocity, Main.rand.NextFloat(32f, 46f) * vomitScaleFactor, Main.rand.NextFloat());
+                for (int i = 0; i < 9; i++)
+                {
+                    float vomitSpeed = MathF.Max(Main.rand.NextFloat(9f, 14f), NPC.velocity.Length());
+                    Vector2 vomitVelocity = NPC.SafeDirectionTo(MouthPosition).RotatedByRandom(0.1f) * vomitSpeed + Main.rand.NextVector2Circular(5f, 5f) * vomitScaleFactor;
+                    ModContent.GetInstance<BileMetaball>().CreateParticle(MouthPosition, vomitVelocity, Main.rand.NextFloat(32f, 46f) * vomitScaleFactor, Main.rand.NextFloat());
+                }
             }
         }
 
@@ -353,14 +358,17 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.OldDuke
         /// </summary>
         public void BreatheFire(int particleCount = 3)
         {
-            float fireBreathSpeed = MathHelper.Clamp(NPC.velocity.Length() * 1.15f, 60f, 1000f);
-            for (int i = 0; i < particleCount; i++)
+            if (Main.netMode != NetmodeID.Server)
             {
-                float squish = Main.rand.NextFloat(0.4f, 0.5f);
-                float fireScale = Main.rand.NextFloat(100f, 240f);
-                Vector2 fireVelocity = NPC.rotation.ToRotationVector2() * fireBreathSpeed + Main.rand.NextVector2Circular(30f, 30f);
-                Color fireColor = new Color(Main.rand.Next(91, 170), 255, 9);
-                OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(MouthPosition + NPC.velocity * 3f, fireVelocity, new Vector2(1f - squish, 1f) * fireScale, fireColor);
+                float fireBreathSpeed = MathHelper.Clamp(NPC.velocity.Length() * 1.15f, 60f, 1000f);
+                for (int i = 0; i < particleCount; i++)
+                {
+                    float squish = Main.rand.NextFloat(0.4f, 0.5f);
+                    float fireScale = Main.rand.NextFloat(100f, 240f);
+                    Vector2 fireVelocity = NPC.rotation.ToRotationVector2() * fireBreathSpeed + Main.rand.NextVector2Circular(30f, 30f);
+                    Color fireColor = new Color(Main.rand.Next(91, 170), 255, 9);
+                    OldDukeFireParticleSystemManager.ParticleSystem.CreateNew(MouthPosition + NPC.velocity * 3f, fireVelocity, new Vector2(1f - squish, 1f) * fireScale, fireColor);
+                }
             }
         }
 
@@ -1140,8 +1148,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.OldDuke
                         burstColor = Color.YellowGreen;
                     }
 
-                    ChromaticBurstParticle burst = new(MouthPosition, burstColor * 0.75f, burstBlend, 0.1f, 12);
-                    burst.Spawn();
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        ChromaticBurstParticle burst = new(MouthPosition, burstColor * 0.75f, burstBlend, 0.1f, 12);
+                        burst.Spawn();
+                    }
 
                     ScreenShakeSystem.StartShake(16f, MathHelper.TwoPi, null, 4.5f);
                 }

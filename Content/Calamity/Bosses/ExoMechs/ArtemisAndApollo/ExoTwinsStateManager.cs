@@ -26,6 +26,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
             set;
         } = new(ExoTwinsAIState.SpawnAnimation, new float[5]);
 
+        public static ExoTwinsAIState PreviousState
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// The set of all passive individual AI states the Exo Twins can perform.
         /// </summary>
@@ -75,7 +81,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
 
             if (SharedState.AIState == ExoTwinsAIState.PerformComboAttack)
                 SharedState.AITimer = ExoMechComboAttackManager.ComboAttackTimer;
-            else if (Main.netMode == NetmodeID.Server && SharedState.AITimer % 60 == 0)
+            else if (Main.netMode == NetmodeID.Server && SharedState.AITimer % 60 == 1)
                 PacketManager.SendPacket<ExoMechExoTwinStatePacket>();
         }
 
@@ -137,6 +143,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
                     ExoTwinsStates.DoBehavior_Leave(twin, twinAttributes);
                     break;
 
+                case ExoTwinsAIState.Reposition:
+                    ExoTwinsStates.DoBehavior_Reposition(twin, twinAttributes);
+                    break;
+
                 case ExoTwinsAIState.EnterSecondPhase:
                     ExoTwinsStates.DoBehavior_EnterSecondPhase(twin, twinAttributes);
                     break;
@@ -187,6 +197,16 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
         public static ExoTwinsAIState MakeAIStateChoice()
         {
             ExoTwinsAIState previousState = SharedState.AIState;
+            if (previousState == ExoTwinsAIState.Reposition)
+            {
+                previousState = PreviousState;
+            }
+            else
+            {
+                PreviousState = SharedState.AIState;
+                SharedState.TotalFinishedAttacks--;
+                return ExoTwinsAIState.Reposition;
+            }
             ExoTwinsAIState choice;
 
             do
@@ -268,7 +288,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
             SharedState.ResetForNextState();
             SharedState.AIState = stateToUse ?? MakeAIStateChoice();
 
-            if (SharedState.AIState != ExoTwinsAIState.Leave)
+            if (SharedState.AIState != ExoTwinsAIState.Leave && SharedState.AIState != ExoTwinsAIState.Reposition)
                 SoundEngine.PlaySound(Artemis.AttackSelectionSound with { MaxInstances = 1, SoundLimitBehavior = SoundLimitBehavior.IgnoreNew });
 
             if (CalamityGlobalNPC.draedonExoMechTwinRed != -1 && Main.npc[CalamityGlobalNPC.draedonExoMechTwinRed].TryGetDLCBehavior(out ArtemisEternity artemis))

@@ -2,6 +2,7 @@
 using FargowiltasCrossmod.Assets.Particles;
 using FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.SpecificManagers;
 using FargowiltasCrossmod.Core;
+using FargowiltasSouls.Core.Systems;
 using Luminance.Assets;
 using Luminance.Common.DataStructures;
 using Luminance.Common.Utilities;
@@ -83,7 +84,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Projectiles
 
             if (Projectile.velocity.Length() < 24f)
             {
-                float acceleration = Utils.Remap(homeInInterpolant, 0f, 0.4f, 1.0128f, 1f);
+                float maxAccel = WorldSavingSystem.MasochistModeReal ? 1.012f : 1.009f;
+                float acceleration = Utils.Remap(homeInInterpolant, 0f, 0.4f, maxAccel, 1f);
                 Projectile.velocity *= acceleration;
             }
         }

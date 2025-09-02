@@ -71,9 +71,9 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
         public override void ResetEffects()
         {
             if (ProwlerDiveTimer > 0)
-            {
                 ProwlerDiveTimer--;
-            }
+            if (ProwlerDiveTimer < 0)
+                ProwlerDiveTimer++;
             if (BrimflameDefenseTimer > 0)
                 BrimflameDefenseTimer--;
             if (BrimflameShootingTimer > 0)

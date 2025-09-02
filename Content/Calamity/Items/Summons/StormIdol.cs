@@ -2,7 +2,7 @@
 using CalamityMod.Items.Placeables;
 using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.SunkenSea;
-using Fargowiltas.Items.Summons;
+using Fargowiltas.Content.Items.Summons;
 using FargowiltasCrossmod.Core;
 using Terraria;
 using Terraria.ID;

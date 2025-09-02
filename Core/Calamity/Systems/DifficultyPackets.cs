@@ -120,30 +120,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
 
         public abstract void Read(BinaryReader reader);
     }
-    public class EternityRevPacket : BaseDLCPacket
-    {
-        public override void Write(ModPacket packet, params object[] context)
-        {
-            BitsByte containmentFlagWrapper = new()
-            {
-                [0] = CalDLCWorldSavingSystem.EternityRev,
-                [1] = WorldSavingSystem.EternityMode,
-                [2] = WorldSavingSystem.ShouldBeEternityMode
-            };
-            packet.Write(containmentFlagWrapper);
-        }
-
-        public override void Read(BinaryReader reader)
-        {
-            BitsByte containmentFlagWrapper = reader.ReadByte();
-            CalDLCWorldSavingSystem.EternityRev = containmentFlagWrapper[0];
-            WorldSavingSystem.EternityMode = containmentFlagWrapper[1];
-            WorldSavingSystem.ShouldBeEternityMode = containmentFlagWrapper[2];
-            if (WorldSavingSystem.ShouldBeEternityMode)
-                WorldSavingSystem.SpawnedDevi = true;
-        }
-    }
-    public class EternityDeathPacket : BaseDLCPacket
+    public class EternityCalPacket : BaseDLCPacket
     {
         public override void Write(ModPacket packet, params object[] context)
         {

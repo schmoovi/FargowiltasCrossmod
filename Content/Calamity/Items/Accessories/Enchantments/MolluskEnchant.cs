@@ -33,6 +33,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class MolluskEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
@@ -40,6 +41,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             return false;
         }
         public override Color nameColor => new Color(153, 200, 193);
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -102,7 +107,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             if (player.CalamityAddon().ClamSlamTime > 0)
             {
                 
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<ClamSlam>()] == 0)
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<ClamSlam>()] == 0 && player.whoAmI == Main.myPlayer)
                 {
                     //int damage = player.ForceEffect<AstralEffect>() ? 100 : 50;
                     Projectile p = Projectile.NewProjectileDirect(player.GetSource_EffectItem<MolluskEffect>(), player.Center, Vector2.Zero, ModContent.ProjectileType<ClamSlam>(), 2000, 2, player.whoAmI);

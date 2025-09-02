@@ -45,6 +45,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
             if (!WorldSavingSystem.EternityMode) return;
             entity.Opacity = 1f;
             entity.CalamityDLC().ImmuneToAllDebuffs = true;
+            entity.damage = 60;
         }
         public override void SpawnNPC(int npc, int tileX, int tileY)
         {

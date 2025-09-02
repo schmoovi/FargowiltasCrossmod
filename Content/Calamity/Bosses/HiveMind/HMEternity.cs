@@ -21,7 +21,7 @@ using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls;
 using FargowiltasSouls.Common.Graphics.Particles;
 using FargowiltasSouls.Content.Bosses.MutantBoss;
-using FargowiltasSouls.Content.Buffs.Masomode;
+using FargowiltasSouls.Content.Buffs.Eternity;
 using FargowiltasSouls.Core.Globals;
 using FargowiltasSouls.Core.NPCMatching;
 using FargowiltasSouls.Core.Systems;
@@ -59,8 +59,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
             }
             else
             {
-                NPC.lifeMax = (int)Math.Round(NPC.lifeMax * 1.175f);
+                NPC.lifeMax = (int)Math.Round(NPC.lifeMax * 1.15f);
             }
+            NPC.damage = 60;
         }
         public override void OnSpawn(IEntitySource source)
         {
@@ -1115,10 +1116,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                                         if (Main.netMode != NetmodeID.MultiplayerClient)
                                         {
                                             int type = ModContent.ProjectileType<ShadeNimbusHostile>();
-                                            int damage = NPC.GetProjectileDamage(type);
                                             Vector2 cloudSpawnPos = new Vector2(NPC.position.X + Main.rand.Next(NPC.width), NPC.position.Y + Main.rand.Next(NPC.height));
                                             Vector2 randomVelocity = Vector2.Zero;
-                                            int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), cloudSpawnPos, randomVelocity, type, damage, 0, Main.myPlayer, 11f);
+                                            int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), cloudSpawnPos, randomVelocity, type, FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage), 0, Main.myPlayer, 11f);
                                             if (p.IsWithinBounds(Main.maxProjectiles))
                                             {
                                                 Main.projectile[p].extraUpdates += 1;
@@ -1175,10 +1175,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                                         float rot = totalSpread * ((float)i / spread - 0.5f);
                                         Vector2 dir = NPC.DirectionTo(target.Center).RotatedBy(rot);
                                         int type = ModContent.ProjectileType<GravityVileClot>();
-                                        int damage = FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage);
                                         Vector2 spawnPos = NPC.Center + dir * NPC.height / 2;
                                         Vector2 vel = dir * 12.5f;
-                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPos, vel, type, damage, 0, Main.myPlayer);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPos, vel, type, FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage), 0, Main.myPlayer);
                                     }
                                 }
                             }

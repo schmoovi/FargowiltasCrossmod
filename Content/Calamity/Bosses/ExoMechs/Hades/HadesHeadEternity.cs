@@ -130,6 +130,15 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Hades
         }
 
         /// <summary>
+        /// For how many more frames this should have no contact damage.
+        /// </summary>
+        public int NoContactDamageTimer
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Whether Hades has created his body segments yet or not.
         /// </summary>
         public bool HasCreatedSegments
@@ -338,6 +347,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Hades
 
             NPC.Opacity = 1f;
             NPC.Calamity().ShouldCloseHPBar = Inactive || CurrentState == HadesAIState.DeathAnimation;
+
+            if (NoContactDamageTimer > 0)
+            {
+                NoContactDamageTimer--;
+                NPC.damage = 0;
+            }
 
             AITimer++;
             return false;

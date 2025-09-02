@@ -30,7 +30,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
         public override void SetDefaults()
         {
             if (!WorldSavingSystem.EternityMode) return;
-            NPC.lifeMax *= 5;
+            NPC.lifeMax *= 3;
         }
         public override void OnSpawn(IEntitySource source)
         {

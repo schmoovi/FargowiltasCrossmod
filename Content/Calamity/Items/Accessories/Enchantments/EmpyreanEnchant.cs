@@ -49,6 +49,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class EmpyreanEnchant : BaseEnchant
     {
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
@@ -57,7 +58,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
 
         public override void SetStaticDefaults()
         {
-
+            base.SetStaticDefaults();
         }
         public override void SetDefaults()
         {

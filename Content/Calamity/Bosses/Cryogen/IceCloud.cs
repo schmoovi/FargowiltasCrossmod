@@ -3,6 +3,7 @@
 using CalamityMod;
 using CalamityMod.Particles;
 using FargowiltasCrossmod.Core;
+using FargowiltasSouls;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,7 +22,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Cryogen
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     public class IceCloud : ModProjectile
     {
-        public override string Texture => "FargowiltasSouls/Content/Projectiles/Empty";
+        public override string Texture => FargoSoulsUtil.EmptyTexture;
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 30;

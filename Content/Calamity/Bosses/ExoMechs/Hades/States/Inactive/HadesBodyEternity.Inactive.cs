@@ -23,6 +23,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Hades
 
             NPC.damage = 0;
             NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
+            NoContactDamageTimer = 120;
         }
     }
 }

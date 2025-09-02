@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
+using CalamityMod.Items.Mounts;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
@@ -9,7 +10,7 @@ using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls;
 using FargowiltasSouls.Content.Items.Accessories.Enchantments;
 using FargowiltasSouls.Content.Items.Accessories.Forces;
-using FargowiltasSouls.Content.Items.Accessories.Masomode;
+using FargowiltasSouls.Content.Items.Accessories;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Content.Items.Weapons.FinalUpgrades;
 using FargowiltasSouls.Content.Items.Weapons.SwarmDrops;
@@ -23,6 +24,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using FargowiltasSouls.Content.Items.Accessories.Eternity;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
@@ -33,22 +35,22 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         public static float BalanceChange(Item item)
         {
 
-            if (item.type == ItemType<TheDestroyer>() || item.type == ItemType<RefractorBlaster2>() || item.type == ItemType<StaffOfUnleashedOcean>() || item.type == ItemType<OpticStaffEX>())
+            if (item.type == ItemType<TheDestroyer>() || item.type == ItemType<DiffractorBlaster>() || item.type == ItemType<StaffOfUnleashedOcean>() || item.type == ItemType<OmniscienceStaff>())
                 return 1.5f;
             if (DLCSets.GetValue(DLCSets.Items.AbomTierFargoWeapon, item.type))
                 return 2f;
             if (DLCSets.GetValue(DLCSets.Items.ChampionTierFargoWeapon, item.type))
                 return 0.8f;
 
-            if (item.type == ItemType<Ataraxia>())
-                return 0.65f;
+            if (item.type == ItemType<Ataraxia>() || item.type == ItemType<DragonRage>())
+                return 0.7f;
 
             //Shadowspec items and such
             // Melee
             if (item.type == ItemType<IridescentExcalibur>()) return 0.6f;
             if (item.type == ItemType<IllustriousKnives>()) return 1f;
             if (item.type == ItemType<NanoCore>() && item.DamageType.CountsAsClass(DamageClass.Melee)) return 2f;
-            if (item.type == ItemType<Azathoth>()) return 1f;
+            if (item.type == ItemType<Ozzathoth>()) return 1f;
             if (item.type == ItemType<RedSun>()) return 0.85f;
             if (item.type == ItemType<GaelsGreatsword>()) return 0.75f;
             // Ranged
@@ -61,7 +63,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ItemType<Eternity>()) return 0.7f;
             if (item.type == ItemType<TheDanceofLight>()) return 0.8f;
             if (item.type == ItemType<RainbowPartyCannon>()) return 0.7f;
-            if (item.type == ItemType<Fabstaff>()) return 1.2f;
+            if (item.type == ItemType<Sylvestaff>()) return 1.2f;
             // Summoner
             if (item.type == ItemType<AngelicAlliance>()) return 0.2f;
             if (item.type == ItemType<FlamsteedRing>()) return 0.45f;
@@ -161,6 +163,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     ItemBalance(tooltips, EModeChange.Nerf, "Laudanum", mod: "FargowiltasCrossmod");
                 if (item.type == ItemType<OceanCrest>() || item.type == ItemType<AquaticEmblem>())
                     ItemBalance(tooltips, EModeChange.Buff, "OceanCrest", mod: "FargowiltasCrossmod");
+                if (item.type == ItemType<TheSponge>())
+                    ItemBalance(tooltips, EModeChange.Nerf, "TheSponge", mod: "FargowiltasCrossmod");
+                if (item.type == ItemType<ExoThrone>())
+                    ItemBalance(tooltips, EModeChange.Nerf, "ExoBox", mod: "FargowiltasCrossmod");
             }
 
             float balance = BalanceChange(item);

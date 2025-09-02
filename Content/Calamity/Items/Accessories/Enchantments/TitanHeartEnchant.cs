@@ -41,12 +41,12 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
     [LegacyName("TitanHeartEnchantment")]
     public class TitanHeartEnchant : BaseEnchant
     {
-
+        public override string Texture => "FargowiltasCrossmod/Content/Calamity/Items/Accessories/Enchantments/" + Name;
         public override Color nameColor => new Color(102, 96, 117);
 
         public override void SetStaticDefaults()
         {
-
+            base.SetStaticDefaults();
         }
         public override void SetDefaults()
         {

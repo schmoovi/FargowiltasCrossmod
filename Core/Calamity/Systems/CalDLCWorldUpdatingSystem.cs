@@ -1,7 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
 using CalamityMod.Skies;
-using Fargowiltas.NPCs;
+using Fargowiltas.Content.NPCs;
 using FargowiltasCrossmod.Core.Calamity;
 using FargowiltasCrossmod.Core.Common;
 using FargowiltasSouls.Core.Systems;
@@ -34,11 +34,18 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             if (ModCompatibility.Calamity.Loaded)
             {
+                if (!Main.expertMode && (CalDLCWorldSavingSystem.EternityRev || CalDLCWorldSavingSystem.EternityDeath))
+                {
+                    CalDLCWorldSavingSystem.EternityRev = false;
+                    CalDLCWorldSavingSystem.EternityDeath = false;
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        PacketManager.SendPacket<EternityCalPacket>();
+                }
                 if (WorldSavingSystem.EternityMode && !CalDLCWorldSavingSystem.EternityRev)
                 {
                     CalDLCWorldSavingSystem.EternityRev = true;
                     if (Main.netMode != NetmodeID.SinglePlayer)
-                        PacketManager.SendPacket<EternityRevPacket>();
+                        PacketManager.SendPacket<EternityCalPacket>();
                 }
                 bool infernum = false;
                 if (ModCompatibility.InfernumMode.Loaded)
@@ -49,7 +56,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                     WorldSavingSystem.ShouldBeEternityMode = true;
                     WorldSavingSystem.EternityMode = true;
                     if (Main.netMode != NetmodeID.SinglePlayer)
-                        PacketManager.SendPacket<EternityRevPacket>();
+                        PacketManager.SendPacket<EternityCalPacket>();
                 }
                 if (WorldSavingSystem.EternityMode && !WorldSavingSystem.SpawnedDevi && DLCUtils.HostCheck)
                 {
@@ -84,7 +91,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                         WorldSavingSystem.ShouldBeEternityMode = false;
                         Main.NewText(Language.GetTextValue("Mods.FargowiltasCrossmod.EmodeBannedByInfernum"));
                         if (Main.netMode != NetmodeID.SinglePlayer)
-                            PacketManager.SendPacket<EternityRevPacket>();
+                            PacketManager.SendPacket<EternityCalPacket>();
                     }
                     else
                     {

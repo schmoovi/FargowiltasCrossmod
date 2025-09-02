@@ -15,17 +15,18 @@ using Terraria;
 using CalamityMod.BiomeManagers;
 using CalamityMod.World;
 using FargowiltasSouls.Core.Systems;
-using static FargowiltasCrossmod.Core.Calamity.Systems.CalDLCDetours;
+using static FargowiltasCrossmod.Core.Calamity.Detours.CalDLCDetours;
 using Fargowiltas.Common.Configs;
 using Terraria.ModLoader;
 using CalamityMod;
 
-namespace FargowiltasCrossmod.Core.Calamity.Systems
+namespace FargowiltasCrossmod.Core.Calamity.Detours
 {
     [ExtendsFromMod(ModCompatibility.Calamity.Name)]
     [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]
     public class CalDLCFountainDetours : ICustomDetourProvider
     {
+        #pragma warning disable CS8601
         private static readonly MethodInfo AstralInfectionActiveMethod = typeof(AstralInfectionBiome).GetMethod("IsBiomeActive", LumUtils.UniversalBindingFlags);
         private static readonly MethodInfo BrimstoneCragsActiveMethod = typeof(BrimstoneCragsBiome).GetMethod("IsBiomeActive", LumUtils.UniversalBindingFlags);
         private static readonly MethodInfo SulphurousSeaActiveMethod = typeof(SulphurousSeaBiome).GetMethod("IsBiomeActive", LumUtils.UniversalBindingFlags);

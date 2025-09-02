@@ -13,6 +13,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
         Inactive,
         Leave,
 
+        Reposition,
+
         EnterSecondPhase,
 
         DeathAnimation,

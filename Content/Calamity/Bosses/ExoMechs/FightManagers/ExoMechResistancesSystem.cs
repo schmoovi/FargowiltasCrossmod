@@ -2,8 +2,8 @@
 using FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Ares;
 using FargowiltasCrossmod.Core;
 using FargowiltasCrossmod.Core.Calamity.Systems;
-using FargowiltasSouls.Content.Projectiles.BossWeapons;
-using FargowiltasSouls.Content.Projectiles.Minions;
+using FargowiltasSouls.Content.Projectiles.Weapons.Minions;
+using FargowiltasSouls.Content.Projectiles.Weapons.SwarmDrops;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

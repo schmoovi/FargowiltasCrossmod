@@ -65,11 +65,11 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.ArtemisAndApollo
             {
                 hoverOffsetAngle = Utilities.WrapAngle360(hoverOffsetAngle + Main.rand.NextFromList(-1f, 1f) * MathHelper.PiOver2);
                 npc.netUpdate = true;
-
                 int totalPerformedCycles = AITimer / (hoverRedirectTime + slowDownTime + chargeUpTime + energyGleamTime + laserShootTime);
                 if (totalPerformedCycles >= ExothermalOverload_CycleCount)
                     ExoTwinsStateManager.TransitionToNextState();
             }
+
 
             // Reposition in anticipation of the laser firing.
             if (wrapperAITimer <= hoverRedirectTime)

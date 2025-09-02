@@ -34,6 +34,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
             if (!WorldSavingSystem.EternityMode)
                 return;
             entity.CalamityDLC().ImmuneToAllDebuffs = true;
+            entity.damage = 60;
         }
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
         {

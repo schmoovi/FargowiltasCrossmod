@@ -35,10 +35,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
     {
         public override bool InstancePerEntity => true;
         public override NPCMatcher CreateMatcher() => new NPCMatcher().MatchType(ModContent.NPCType<MutantBoss>());
-        public override GlobalNPC NewInstance(NPC target) //the cursed beast
-        {
-            return WorldSavingSystem.EternityMode && ExtraRequirements() ? base.NewInstance(target) : null;
-        }
+        public override bool RequiresEternityPriority => false;
         public override bool ExtraRequirements()
         {
             return ShouldDoDLC;
@@ -228,15 +225,18 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
                     }
                     break;
                 */
+                /*
                 case 4: //straight dash spam
+                    
                     if (Calamity)
                     {
                         DLCAttackChoice = DLCAttack.BumbleDrift;
                         npc.netUpdate = true;
                     }
                     break;
-                case 17: //boundary bullet hell
-                case 39: //okuu spheres p2
+                */
+                case 21: // direct dashes
+                case 39: // okuu spheres p2
                     if (FirstFrame)
                     {
                         SwitchVariant();
@@ -248,7 +248,11 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
                     }
                     break;
                 case 20: //eoc star
-                    if (Calamity)
+                    if (FirstFrame)
+                    {
+                        SwitchVariant();
+                    }
+                    if (VariantChoice == Variant.Calamity)
                     {
                         DLCAttackChoice = DLCAttack.Calamitas;
                         npc.netUpdate = true;
@@ -283,7 +287,11 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
                     }
                     break;
                 case 35: //slime rain
-                    if (Calamity)
+                    if (FirstFrame)
+                    {
+                        SwitchVariant();
+                    }
+                    if (VariantChoice == Variant.Calamity)
                     {
                         DLCAttackChoice = DLCAttack.SlimeGodSlam;
                         npc.netUpdate = true;
@@ -316,7 +324,7 @@ namespace FargowiltasCrossmod.Content.Common.Bosses.Mutant
                 #region Attack Additions
                 //attack additions
 
-                case 38:
+                //case 38: shadow hands
                 case 30:
                     if (Calamity) CalamityFishron(); break;
 

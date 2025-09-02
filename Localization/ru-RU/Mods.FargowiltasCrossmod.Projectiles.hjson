@@ -88,13 +88,13 @@ SulphurCloud.DisplayName: Сернистое облако
 PureGel.DisplayName: Чистейший гель
 HiveMindPulse.DisplayName: Разум улей пульс
 ApolloLineTelegraph.DisplayName: Телеграф
-ApolloMissile.DisplayName: Плазма-ракета
+ApolloMissile.DisplayName: Плазменная боеголовка
 AresMissile.DisplayName: Тепловая боеголовка
 AresMissileBackground.DisplayName: Тепловая боеголовка
 ArtemisLaserImproved.DisplayName: Тепловой лазер
 ArtemisLaserSmall.DisplayName: Маленький тепловой лазер
 CannonLaserbeam.DisplayName: Энергетический тепловой луч смерти
-DraedonLootCrate.DisplayName: Ящик с лутом Дрэйдона
+DraedonLootCrate.DisplayName: Ящик сокровищ Дрэйдона
 ExoelectricBlast.DisplayName: Экзо-электрический взрыв
 ExoOverloadDeathray.DisplayName: Луч смерти экзо-перегрузки
 GaussNuke.DisplayName: Гаусс-бомба
@@ -108,7 +108,7 @@ LargeTeslaSphere.DisplayName: Сфера Тесла
 LargeTeslaSphereExplosion.DisplayName: Взрыв Тесла
 LingeringPlasmaFireball.DisplayName: Шар плазменного огня
 SmallTeslaArc.DisplayName: Дуга Тесла
-ExothermalDisintegrationRay.DisplayName: Экзотермальный луч дизинтеграции
+ExothermalDisintegrationRay.DisplayName: Экзо-термальный луч дезинтеграции
 ScourgeSandstream.DisplayName: Песчаный поток бича
 SmallTeslaSphere.DisplayName: Сфера Тесла
 PlasmaFlameJet.DisplayName: Пламя экзо-плазмы

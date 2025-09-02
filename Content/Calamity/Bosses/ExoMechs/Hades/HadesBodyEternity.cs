@@ -36,6 +36,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Hades
         /// </summary>
         public ref float ExistenceTimer => ref NPC.Calamity().newAI[2];
 
+
         /// <summary>
         /// The spring force to apply to this segment this frame.
         /// </summary>

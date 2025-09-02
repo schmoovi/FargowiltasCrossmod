@@ -55,7 +55,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.ExoMechs.Projectiles
         /// <summary>
         /// The maximum speed that this missile can reach after it begins accelerating.
         /// </summary>
-        public static float MaxSpeedup => 15.75f;
+        public static float MaxSpeedup => 10.75f;
 
         public ExoMechDamageSource DamageType => ExoMechDamageSource.Thermal;
 
