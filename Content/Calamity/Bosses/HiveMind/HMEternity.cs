@@ -464,9 +464,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                                 currentAttack = (float)P2States.I_RainDashStart;
                                 DidRainDash = true;
                                 timer = 0;
-                                if (attackCounter == 3) // if this replaced this replaced spin dashes
+                                if (attackCounter == 3) // if this replaced spin dashes
                                     attackCounter = 2;
-                                NPC.netUpdate = true;
                             }
                             else
                                 DidRainDash = false;
@@ -475,6 +474,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                                 currentAttack = (float)P2States.I_SpindashStart;
                                 timer = 0;
                             }
+                            NPC.netUpdate = true;
                         }
                         break;
                     case P2States.Idle: // idle float, spawn some shit as a shield
@@ -490,9 +490,9 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                             else
                                 NPC.alpha = 0;
 
-                            int creeperCount = attackCounter == 0 ? 4 : 3;
+                            int creeperCount = attackCounter == 0 ? 3 : 2;
                             var creepers = Main.npc.Where(n => n.TypeAlive<DankCreeper>());
-                            if (timer % 40 == 0 && creepers.Count() < creeperCount)
+                            if (timer % 90 == 0 && creepers.Count() < creeperCount)
                                 SpawnCreepers(1);
                             void SpawnCreepers(int count)
                             {
@@ -508,9 +508,25 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                                     }
                                 }
                             }
-                            float speedMod = MathF.Min(1f, timer / 60f);
-                            float speed = 16 * speedMod;
-                            NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(target.Center - NPC.Center) * speed, 0.02f);
+                            if (++ai3 < 50)
+                            {
+                                if (ai3 < 30)
+                                {
+                                    float speed = 12;
+                                    Vector2 desiredPos = target.Center + target.Center.DirectionTo(NPC.Center) * 420;
+                                    NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(desiredPos - NPC.Center) * speed, 0.05f);
+                                }
+                                else
+                                {
+                                    NPC.velocity *= 0.95f;
+                                }
+                            }
+                            else
+                            {
+                                float speedMod = MathF.Min(1f, timer / 60f);
+                                float speed = 16 * speedMod;
+                                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(target.Center - NPC.Center) * speed, 0.02f);
+                            }
 
                             if (timer == MidwayIdleStart + 10 || timer == MidwayIdleStart + 100 && WorldSavingSystem.MasochistModeReal && Subphase(NPC) > 1)
                             {
@@ -636,59 +652,73 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                             {
                                 Vector2 currentVelocity = NPC.velocity;
                                 Vector2 newVelocity = currentVelocity.RotatedBy(MathF.PI * 0.5f * (Main.rand.NextBool() ? 1 : -1));
-                                Vector2 newPosition = target.Center - Vector2.Normalize(newVelocity) * 1200;
+                                Vector2 newPosition = target.Center - Vector2.Normalize(newVelocity) * 760;
                                 NPC.Center = newPosition;
                                 NPC.velocity = newVelocity;
                                 NPC.netUpdate = true;
                                 NPC.velocity = NPC.velocity.ClampMagnitude(0f, maxSpeed);
-
-                                SoundEngine.PlaySound(CalamityMod.NPCs.HiveMind.HiveMind.RoarSound with { Pitch = -0.5f }, NPC.Center);
+                                NPC.velocity /= 10;
                             }
-                            if (timer % 9 == 0)
-                            {
-                                SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
-                                if (FargoSoulsUtil.HostCheck)
-                                {
-
-                                }
-                                for (int i = -1; i < 2; i += 2)
-                                {
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.rand.NextVector2FromRectangle(NPC.Hitbox), -NPC.velocity.RotatedBy(MathF.PI / 3f * i) * 0.8f, ModContent.ProjectileType<BrainMassProjectile>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage), 0, ai1: 1);
-                                }
-                            }
-                            float dashTime = 80;
-                            float decelTime = 25;
-                            if (Math.Abs(FargoSoulsUtil.RotationDifference(NPC.velocity, NPC.DirectionTo(target.Center))) > MathHelper.PiOver2)
-                                if (timer < dashTime)
-                                    timer = dashTime;
-                            bool decel = timer >= dashTime;
-                            bool accelerate = timer < dashTime;
-
-                            float fadeinTime = 15f;
+                            float fadeinTime = 30f;
                             if (NPC.Opacity < 1)
                                 NPC.Opacity += 1f / fadeinTime;
-
-                            if (decel)
+                            if (timer <= fadeinTime)
                             {
-                                NPC.velocity *= 0.96f;
-                            }
-                            if (accelerate) //accelerate during dash towards player
-                            {
-                                const float accel = 0.85f;
-                                Vector2 accelDir = NPC.DirectionTo(Main.player[NPC.target].Center);
+                                const float accel = 0.2f;
+                                Vector2 accelDir = NPC.SafeDirectionTo(Main.player[NPC.target].Center);
                                 NPC.velocity += accelDir * accel;
                                 if (NPC.velocity.LengthSquared() > maxSpeed * maxSpeed)
                                 {
                                     NPC.velocity = Vector2.Normalize(NPC.velocity) * maxSpeed;
                                 }
+                                if (timer == fadeinTime)
+                                    SoundEngine.PlaySound(CalamityMod.NPCs.HiveMind.HiveMind.RoarSound with { Pitch = -0.5f }, NPC.Center);
                             }
-                            if (timer > dashTime + decelTime)
+                            else
                             {
-                                NPC.velocity *= 0.9f;
-                                NPC.Opacity = 1f;
-                                if (timer > dashTime + decelTime + 10)
-                                    currentAttack = (float)P2States.Reset;
+                                if (timer % 9 == 0)
+                                {
+                                    SoundEngine.PlaySound(SoundID.Item20, NPC.Center);
+                                    if (FargoSoulsUtil.HostCheck)
+                                    {
+                                        for (int i = -1; i < 2; i += 2)
+                                        {
+                                            Projectile.NewProjectile(NPC.GetSource_FromAI(), Main.rand.NextVector2FromRectangle(NPC.Hitbox), -NPC.velocity.RotatedBy(MathF.PI / 3f * i) * 0.8f, ModContent.ProjectileType<BrainMassProjectile>(), FargoSoulsUtil.ScaledProjectileDamage(NPC.defDamage), 0, ai1: 1);
+                                        }
+                                    }
+                                }
+                                float dashTime = fadeinTime + 80;
+                                float decelTime = 25;
+                                if (Math.Abs(FargoSoulsUtil.RotationDifference(NPC.velocity, NPC.DirectionTo(target.Center))) > MathHelper.PiOver2)
+                                    if (timer < dashTime)
+                                        timer = dashTime;
+                                bool decel = timer >= dashTime;
+                                bool accelerate = timer < dashTime;
+
+
+                                if (decel)
+                                {
+                                    NPC.velocity *= 0.96f;
+                                }
+                                if (accelerate) //accelerate during dash towards player
+                                {
+                                    const float accel = 0.85f;
+                                    Vector2 accelDir = NPC.DirectionTo(Main.player[NPC.target].Center);
+                                    NPC.velocity += accelDir * accel;
+                                    if (NPC.velocity.LengthSquared() > maxSpeed * maxSpeed)
+                                    {
+                                        NPC.velocity = Vector2.Normalize(NPC.velocity) * maxSpeed;
+                                    }
+                                }
+                                if (timer > dashTime + decelTime)
+                                {
+                                    NPC.velocity *= 0.9f;
+                                    NPC.Opacity = 1f;
+                                    if (timer > dashTime + decelTime + 10)
+                                        currentAttack = (float)P2States.Reset;
+                                }
                             }
+                            
                         }
                         break;
                     case P2States.I_SpindashStart: // start spin dash, by dashing away and fading
