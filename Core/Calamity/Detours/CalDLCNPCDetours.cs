@@ -403,7 +403,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
         {
             var ret = orig(self, type);
             if (ContentSamples.NpcsByNetId[type] != null && ContentSamples.NpcsByNetId[type].ModNPC is ModNPC modNPC && modNPC.Mod.Name == ModCompatibility.Calamity.Name)
-                return CalamityGlobalNPC.GetDownedBossVariable(type);
+                return !CalamityGlobalNPC.GetDownedBossVariable(type);
             return ret;
         }
     }
