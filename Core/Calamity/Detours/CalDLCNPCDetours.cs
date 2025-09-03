@@ -118,6 +118,8 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
             HookHelper.ModifyMethodWithDetour(MediumPerforatorTailOnKill_Method, MediumPerforatorTailOnKill_Detour);
 
             HookHelper.ModifyMethodWithDetour(EmodeEditSpawnPool_Method, EmodeEditSpawnPool_Detour);
+
+            HookHelper.ModifyMethodWithDetour(ModdedCanDrop_Method, ModdedCanDrop_Detour);
         }
         private static readonly MethodInfo CalamityPreAIMethod = typeof(CalamityGlobalNPC).GetMethod("PreAI", LumUtils.UniversalBindingFlags);
         public delegate bool Orig_CalamityPreAI(CalamityGlobalNPC self, NPC npc);
@@ -374,6 +376,15 @@ namespace FargowiltasCrossmod.Core.Calamity.Systems
                 return;
             orig(self, pool, spawnInfo);
 
+        }
+
+        private static readonly MethodInfo ModdedCanDrop_Method = typeof(FirstKillCondition).GetMethod("ModdedCanDrop", LumUtils.UniversalBindingFlags);
+        public delegate bool Orig_ModdedCanDrop(FirstKillCondition self, int type);
+
+        internal static bool ModdedCanDrop_Detour(Orig_ModdedCanDrop orig, FirstKillCondition self, int type)
+        {
+            var ret = orig(self, type);
+            return ret;
         }
     }
 }
