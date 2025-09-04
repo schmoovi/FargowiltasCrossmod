@@ -874,10 +874,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
                     leg.SetAnimationEndAction((PerforatorLeg leg, NPC npc) =>
                     {
                         Vector2 endPoint = leg.GetEndPoint();
-                        float divisor = WorldSavingSystem.MasochistModeReal ? 2 : 8;
-                        Vector2 pos = Target.Center + Target.velocity * stabTime / divisor;
+                        float divisor = WorldSavingSystem.MasochistModeReal ? 6 : 12;
+                        Vector2 pos = Target.Center;
                         pos += endPoint.DirectionTo(pos) * 80;
-                        //pos = endPoint + endPoint.DirectionTo(pos) * 380;
+                        pos = endPoint + endPoint.DirectionTo(pos) * 380;
                         leg.StartCustomAnimation(NPC, pos, 0.5f / stabTime, animationMode: PerforatorLeg.Accel, stepSound: true);
                         leg.DamageTime = 2 * (int)(stabTime);
 
@@ -1041,7 +1041,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
                     if (!npc.HasPlayerTarget)
                         return;
 
-                    int spacing = WorldSavingSystem.MasochistModeReal ? 125 : 150;
+                    int spacing = WorldSavingSystem.MasochistModeReal ? 140 : 160;
                     int random = 5;
                     if (DLCUtils.HostCheck)
                     {
@@ -1078,7 +1078,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
         {
             ClearGore();
 
-            int startTime = 35;
+            int startTime = 45;
             int chargeTime = 100;
             int endlagTime = 30;
             int height = 190;
@@ -1095,7 +1095,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Perforators
                 }
                 float dir = NPC.HorizontalDirectionTo(Target.Center);
                 Vector2 desiredPos = Target.Center + Vector2.UnitX * 700 * -dir;
-                WalkToPositionAI(desiredPos, 1.5f, height);
+                WalkToPositionAI(desiredPos, 2.5f, height);
                 if (Timer == startTime - 5)
                 {
                     AI4 = Target.Center.X + dir * 800;
