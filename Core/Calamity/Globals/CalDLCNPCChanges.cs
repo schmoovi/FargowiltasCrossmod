@@ -307,7 +307,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<CursedCoffin>() || npc.type == NPCType<CursedSpirit>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.2f);
-                npc.damage = 55;
+                npc.damage = 38;
                 calNPC.VulnerableToCold = true;
                 calNPC.VulnerableToSickness = false;
             }
@@ -318,7 +318,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<DeviBoss>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 70;
+                //npc.damage = 70;
                 calNPC.VulnerableToSickness = true;
             }
 

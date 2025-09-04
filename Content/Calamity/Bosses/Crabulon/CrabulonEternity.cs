@@ -39,7 +39,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.Crabulon
             {
                 NPC.lifeMax = 5000000;
             }
-            NPC.damage = 55;
+            NPC.damage = 38;
         }
         public override void OnSpawn(IEntitySource source)
         {
