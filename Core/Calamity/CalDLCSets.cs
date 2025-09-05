@@ -214,7 +214,8 @@ namespace FargowiltasCrossmod.Core.Calamity
                 ItemID.Razorpine,
                 ItemID.BlizzardStaff,
                 ItemID.LaserMachinegun,
-                ItemID.DD2SquireBetsySword
+                ItemID.DD2SquireBetsySword,
+                ItemID.RodofDiscord
             );
             #endregion
 

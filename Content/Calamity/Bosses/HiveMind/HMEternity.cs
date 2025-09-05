@@ -197,14 +197,17 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
 
             Main.windSpeedTarget = Main.windSpeedCurrent = 0.4f;
             //sets rain time to 4 hours
-            int day = 86400;
-            int hour = day / 24;
-            if (Main.rainTime < hour * 0.5f)
-                Main.rainTime = hour * 0.5f;
-            Main.raining = true;
-            if (Main.maxRaining < 0.6f)
-                Main.maxRaining += 0.01f;
-            Main.cloudAlpha = Main.maxRaining;
+            if (!CalamityConfig.Instance.BossesStopWeather)
+            {
+                int day = 86400;
+                int hour = day / 24;
+                if (Main.rainTime < hour * 0.5f)
+                    Main.rainTime = hour * 0.5f;
+                Main.raining = true;
+                if (Main.maxRaining < 0.6f)
+                    Main.maxRaining += 0.01f;
+                Main.cloudAlpha = Main.maxRaining;
+            }
 
             CalamityGlobalNPC.hiveMind = NPC.whoAmI;
 

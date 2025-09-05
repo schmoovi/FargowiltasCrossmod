@@ -95,6 +95,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Forces
                 player.Calamity().reaverSpeed = true;
                 player.endurance += 0.3f;
                 player.statDefense += 30;
+                player.noKnockback = true;
             }
         }
     }
