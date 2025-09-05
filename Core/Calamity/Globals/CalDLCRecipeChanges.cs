@@ -870,6 +870,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     }
                     */
                 }
+                if (recipe.TryGetResult<DeificAmulet>(out _))
+                {
+                    if (recipe.TryGetIngredient(ItemID.StarVeil, out Item veil))
+                    {
+                        recipe.RemoveIngredient(veil);
+                    }
+                    recipe.AddIngredient<HallowedPendant>();
+                }
                 if (recipe.HasResult(ItemType<SigilOfChampions>()) && !recipe.HasIngredient<DivineGeode>())
                 {
                     recipe.AddIngredient<DivineGeode>(5);
@@ -883,6 +891,14 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                     }
                     else if (!recipe.HasIngredient<DivineGeode>())
                         recipe.AddIngredient<DivineGeode>(4);
+                }
+                if (recipe.TryGetResult<RampartofDeities>(out _))
+                {
+                    if (recipe.TryGetIngredient(ItemID.FrozenShield, out Item shield))
+                    {
+                        recipe.RemoveIngredient(shield);
+                    }
+                    recipe.AddIngredient<Devilshield>();
                 }
                 if (recipe.HasResult<AbomsCurse>() && !recipe.HasIngredient<AuricBar>())
                 {
