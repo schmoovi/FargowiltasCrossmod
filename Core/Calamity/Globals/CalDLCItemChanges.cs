@@ -291,6 +291,10 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             {
                 item.pick = 59;
             }
+            if (CalDLCSets.GetValue(CalDLCSets.Items.MarniteExclude, item.type) && !FargoGlobalItem.TungstenAlwaysAffects.Contains(item.type))
+            {
+                FargoGlobalItem.TungstenAlwaysAffects.Add(item.type);
+            }
         }
         public override void UpdateInventory(Item item, Player player)
         {
