@@ -108,6 +108,7 @@ namespace FargowiltasCrossmod.Content.Calamity.Items.Accessories.Enchantments
             {
                 player.statDefense += force ? 20 : 10;
                 player.endurance += force ? 0.24f : 0.12f;
+                player.noKnockback = true;
             }
             Color color = addon.ReaverToggle ? Color.Red : Color.Green;
             if (Main.rand.NextBool(6))

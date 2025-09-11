@@ -403,7 +403,7 @@ ElementsForce: {
 	Tooltip:
 		'''
 		[c/E03131:Режим магмы:]
-		[i:FargowiltasCrossmod/ReaverEnchant] Увеличивает сопротивление урону на 30% и защиту на 30
+		[i:FargowiltasCrossmod/ReaverEnchant] Даёт иммунинет к отбрасыванию, увеличивает сопротивление урону на 30% и защиту на 30
 		[i:FargowiltasCrossmod/HydrothermicEnchant] Атаки заряжают тепло, прекратите атаковать при полном заряде или получите урон, чтобы выпустить его
 		[i:FargowiltasCrossmod/HydrothermicEnchant] Выпуск тепла даёт бафф «Ярость разорителя» и выпускает сильные вспышки хаоса до 3 секунд
 		[c/45A8EF:Режим метели:]

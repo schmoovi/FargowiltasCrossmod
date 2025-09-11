@@ -214,12 +214,10 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = TextureAssets.Projectile[Type].Value;
-
-            int num = texture.Height / Main.projFrames[Type];
-            int y = Projectile.frame * num;
-            Rectangle rectangle = new(0, y, texture.Width, num);
-            Vector2 origin = rectangle.Size() / 2f;
+            Texture2D texture = Projectile.GetTexture();
+            Vector2 drawPos = Projectile.GetDrawPosition();
+            Rectangle frame = Projectile.GetDefaultFrame();
+            Vector2 origin = frame.Size() / 2;
             SpriteEffects effects = ((Projectile.spriteDirection <= 0) ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
 
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
@@ -233,14 +231,22 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
                 oldColor *= (float)(trailLength - i) / trailLength;
                 Vector2 oldPos = Projectile.oldPos[i] + Projectile.Size / 2;
                 float oldRot = Projectile.oldRot[i];
-                Main.spriteBatch.Draw(texture, oldPos - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), rectangle, Projectile.GetAlpha(oldColor),
+                Main.spriteBatch.Draw(texture, oldPos - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY), frame, Projectile.GetAlpha(oldColor),
                     oldRot, origin, Projectile.scale, effects, 0);
+            }
+
+            for (int j = 0; j < 12; j++)
+            {
+                Vector2 afterimageOffset = (MathHelper.TwoPi * j / 12).ToRotationVector2() * 1f * Projectile.scale;
+                Color glowColor = Color.Green;
+
+                Main.EntitySpriteDraw(texture, drawPos + afterimageOffset, frame, Projectile.GetAlpha(glowColor), Projectile.rotation, frame.Size() / 2, Projectile.scale, effects);
             }
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Main.GameViewMatrix.ZoomMatrix);
 
-            FargoSoulsUtil.GenericProjectileDraw(Projectile, lightColor, texture);
+            Main.EntitySpriteDraw(texture, drawPos, frame, Projectile.GetAlpha(Color.White), Projectile.rotation, frame.Size() / 2, Projectile.scale, effects);
             return false;
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)

@@ -3,7 +3,7 @@ ReaverEffect: {
 	Tooltip:
 		'''
 		Switch between Plated and Swift Mode
-		Plated Mode: Increases defense by 10 and damage reduction by 12%, taking damage grants Reaver Rage and summons a thorn spike
+		Plated Mode: Grants immunity to knockback, increases defense by 10 and damage reduction by 12%, taking damage grants Reaver Rage and summons a thorn spike
 		Swift Mode: Grants massive life regeneration, increases wing time and speed by 10%, reduces dash cooldown, increases hook speed
 		'''
 }

@@ -401,7 +401,7 @@ ElementsForce: {
 	Tooltip:
 		'''
 		[c/E03131:Magma Mode:]
-		[i:FargowiltasCrossmod/ReaverEnchant] Increased damage reduction by 30% and defense by 30
+		[i:FargowiltasCrossmod/ReaverEnchant] Grants immunity to knockback, increases damage reduction by 30% and defense by 30
 		[i:FargowiltasCrossmod/HydrothermicEnchant] Attacking builds up heat, stop attacking at full heat or get hit to vent it
 		[i:FargowiltasCrossmod/HydrothermicEnchant] Venting heat grants Reaver Rage and summons powerful chaos flares for up to 3 seconds
 		[c/45A8EF:Blizzard Mode:]

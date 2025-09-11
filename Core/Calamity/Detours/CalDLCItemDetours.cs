@@ -159,6 +159,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
             LeadingConditionRule dontDigUp = itemLoot.DefineConditionalDropSet(() => Main.remixWorld || Main.zenithWorld);
             dontDigUp.Add(ItemID.ObsidianSkinPotion, 1, 5, 5);
             itemLoot.Add(ModContent.ItemType<EternityAdvisor>());
+            itemLoot.Add(ModContent.ItemType<EnchantedTree>());
             itemLoot.Add(ModContent.ItemType<AutoHouse>(), 1, 2, 2);
             itemLoot.Add(ModContent.ItemType<MiniInstaBridge>(), 1, 2, 2);
             itemLoot.Add(ModContent.ItemType<EurusSock>());

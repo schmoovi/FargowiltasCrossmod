@@ -100,6 +100,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using static FargowiltasSouls.Core.Globals.EModeFirstKillDrop;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
@@ -306,7 +307,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<CursedCoffin>() || npc.type == NPCType<CursedSpirit>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.2f);
-                npc.damage = 55;
+                npc.damage = 38;
                 calNPC.VulnerableToCold = true;
                 calNPC.VulnerableToSickness = false;
             }
@@ -317,7 +318,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<DeviBoss>())
             {
                 npc.lifeMax = (int)(npc.lifeMax * 1.3f);
-                npc.damage = 70;
+                //npc.damage = 70;
                 calNPC.VulnerableToSickness = true;
             }
 
@@ -725,63 +726,64 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             #endregion Remove Drops
 
             #region Crates
+            // Reminder: You need to add the NPC downed bool in CalDLCNPCDetours::ModdedCanDrop_Detour when you add something here!!!!
             if (npc.type == NPCType<DesertScourgeHead>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemType<EutrophicCrate>(), 1, 3, 3));
+                npcLoot.Add(FirstKillDrop(3, ItemType<EutrophicCrate>()));
             }
             if (npc.type == NPCType<Crabulon>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemID.IronCrate, 1, 3, 3));
+                npcLoot.Add(FirstKillDrop(3, ItemID.IronCrate));
             }
             if (npc.type == NPCType<HiveMind>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemID.CorruptFishingCrate, 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemID.CorruptFishingCrate));
             }
             if (npc.type == NPCType<PerforatorHive>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemID.CrimsonFishingCrate, 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemID.CrimsonFishingCrate));
             }
             if (npc.type == NPCType<SlimeGodCore>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemType<SulphurousCrate>(), 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemType<SulphurousCrate>()));
             }
             if (npc.type == NPCType<Cryogen>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemID.FrozenCrateHard, 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemID.FrozenCrateHard));
             }
             if (npc.type == NPCType<AquaticScourgeHead>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemType<HydrothermalCrate>(), 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemType<HydrothermalCrate>()));
             }
             if (npc.type == NPCType<BrimstoneElemental>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemType<BrimstoneCrate>(), 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemType<BrimstoneCrate>()));
             }
             if (npc.type == NPCType<CalamitasClone>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemType<BrimstoneCrate>(), 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemType<BrimstoneCrate>()));
             }
 
 
             if (npc.type == NPCType<Leviathan>() || npc.type == NPCType<Anahita>())
             {
-                Func<bool> what = new Func<bool>(Leviathan.LastAnLStanding);
+                Func<bool> what = new(Leviathan.LastAnLStanding);
                 LeadingConditionRule levidroprule = npcLoot.DefineConditionalDropSet(what);
-                levidroprule.OnSuccess(ItemDropRule.ByCondition(emodeRule.condition, ItemID.OceanCrateHard, 1, 5, 5, 1));
+                levidroprule.OnSuccess(FirstKillDrop(5, ItemID.OceanCrateHard));
                 npcLoot.Add(levidroprule);
             }
 
             if (npc.type == NPCType<AstrumAureus>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemType<AstralCrate>(), 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemType<AstralCrate>()));
             }
             if (npc.type == NPCType<PlaguebringerGoliath>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemID.JungleFishingCrateHard, 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemID.JungleFishingCrateHard));
             }
             if (npc.type == NPCType<RavagerBody>())
             {
-                emodeRule.OnSuccess(ItemDropRule.Common(ItemID.GoldenCrateHard, 1, 5, 5));
+                npcLoot.Add(FirstKillDrop(5, ItemID.GoldenCrateHard));
             }
             bool AstrumDeusHeadShouldNotDropThings(NPC npc) //this being needed is crazy (jit exception when cal not loaded otherwise)
             {
@@ -800,7 +802,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (npc.type == NPCType<AstrumDeusHead>())
             {
                 LeadingConditionRule lastWorm = npcLoot.DefineConditionalDropSet((info) => !AstrumDeusHeadShouldNotDropThings(info.npc));
-                lastWorm.OnSuccess(ItemDropRule.ByCondition(emodeRule.condition, ItemType<AstralCrate>(), 1, 5, 5, 1));
+                lastWorm.OnSuccess(FirstKillDrop(5, ItemType<AstralCrate>()));
                 npcLoot.Add(lastWorm);
             }
 

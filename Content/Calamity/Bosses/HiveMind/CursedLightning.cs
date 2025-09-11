@@ -25,8 +25,8 @@ namespace FargowiltasCrossmod.Content.Calamity.Bosses.HiveMind
         }
         public override void SetDefaults()
         {
-            Projectile.width = 10;
-            Projectile.height = 10;
+            Projectile.width = 4;
+            Projectile.height = 4;
             Projectile.hostile = true;
             Projectile.timeLeft = 600;
             Projectile.tileCollide = false;
