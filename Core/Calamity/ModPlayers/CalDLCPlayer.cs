@@ -53,6 +53,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
     public class CalDLCPlayer : ModPlayer
     {
         public bool CalamitousPresence;
+        public bool Revealed;
         public bool CheckedWrathOldDuke;
 
         public static int SpongeRechargeTime_Normal = 0;
@@ -62,6 +63,7 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
         public override void ResetEffects()
         {
             CalamitousPresence = CalamitousPresence && Player.HasBuff(BuffType<CalamitousPresenceBuff>());
+            Revealed = Revealed && Player.HasBuff(BuffType<RevealedBuff>());
             base.ResetEffects();
         }
         public override void OnEnterWorld()
@@ -163,10 +165,6 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 effectsPlayer.EffectItems[adamEffect.Index] = null;
 
             }
-            if (Player.HasEffect<TinEffect>())
-            {
-                calamityPlayer.spiritOrigin = false;
-            }
 
             if (soulsPlayer.FlightMasterySoul)
                 calamityPlayer.infiniteFlight = true;
@@ -222,6 +220,10 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 Player.ClearBuff(BuffType<CalamitousPresenceBuff>());
                 Player.buffImmune[BuffType<CalamitousPresenceBuff>()] = true;
                 CalamitousPresence = false;
+            }
+            if (Player.FargoSouls().MoonChalice) //vdm
+            {
+                Player.buffImmune[BuffType<RevealedBuff>()] = true;
             }
         }
         public override void ProcessTriggers(TriggersSet triggersSet)

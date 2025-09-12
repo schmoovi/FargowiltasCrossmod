@@ -53,6 +53,11 @@ Buffs: {
 		Description: Защита, сопротивление урону и восстановление здоровья снижены; эффект «Лунного укуса»; радиус грэйза уменьшен
 		DisplayName: Бедственное присутствие
 	}
+
+	RevealedBuff: {
+		// DisplayName: Revealed Buff
+		// Description: Your rogue stealth and throwing velocity have been busted
+	}
 }
 
 ExpandedTooltips: {

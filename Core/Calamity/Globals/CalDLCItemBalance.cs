@@ -102,18 +102,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
         {
             switch (item.type)
             {
-                //magic dagger not using system because needs to dynamically change and change shootspeed (setdefaults doesnt allow dynamic change)
-                case ItemID.MagicDagger:
-                    if (!Main.hardMode)
-                    {
-                        damage *= 0.51f;
-                        item.shootSpeed = 12;
-                    }
-                    else
-                    {
-                        item.shootSpeed = 30;
-                    }
-                    break;
                 case ItemID.CobaltSword:
                 case ItemID.PalladiumSword:
                 case ItemID.MythrilSword:
@@ -122,10 +110,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                         player.FargoSouls().AttackSpeed /= 1.5f;
                     }
                     break;
-            }
-            if (item.type == ItemID.OrichalcumSword || item.type == ItemID.OrichalcumHalberd)
-            {
-                damage *= 0.725f;
             }
         }
         #region Tooltips
@@ -182,26 +166,17 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             else if (balance < 1)
                 tooltips.Add(new TooltipLine(Mod, "DamageDown", $"{BalanceDownLine}" + Language.GetText($"Mods.FargowiltasCrossmod.EModeBalance.DamageDownGeneric").Format(Math.Round((1 - balance) * 100))));
 
-            if (item.type == ItemID.MagicDagger)
-                NerfTooltip("MagicDagger");
-
             if (item.type == ItemType<ProfanedSoulCrystal>())
                 NerfTooltip("ProfanedCrystal");
 
             if (item.type == ItemType<MythrilEnchant>())
                 NerfTooltip("MythrilEnch");
 
-            if (item.type == ItemType<OrichalcumEnchant>())
-                NerfTooltip("OrichalcumEnch");
+            //if (item.type == ItemType<OrichalcumEnchant>())
+                //NerfTooltip("OrichalcumEnch");
 
-            if (item.type == ItemType<EarthForce>())
-                NerfTooltip("EarthForce");
-
-            if (item.type == ItemType<DaawnlightSpiritOrigin>())
-                NerfTooltip("Daawnlight");
-
-            if (item.type == ItemType<SlimyShield>())
-                NerfTooltip("SlimyShield");
+            //if (item.type == ItemType<EarthForce>())
+                //NerfTooltip("EarthForce");
 
             if (item.ModItem != null && item.ModItem is FlightMasteryWings && item.ModItem is not EternitySoul)
                 NerfTooltip("FlightMastery");
@@ -209,7 +184,7 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
             if (item.type == ItemType<LifeForce>())
                 NerfTooltip("LifeForce");
 
-            if (item.type is ItemID.CobaltSword or ItemID.PalladiumSword or ItemID.OrichalcumSword or ItemID.MythrilSword or ItemID.OrichalcumHalberd)
+            if (item.type is ItemID.CobaltSword or ItemID.PalladiumSword or ItemID.OrichalcumSword or ItemID.MythrilSword)
                 NerfTooltip("HardmodeSwords");
             if (item.type == ItemID.ReaverShark)
                 tooltips.Add(new TooltipLine(Mod, "PPDown", $"{BalanceDownLine}" + Language.GetText($"Mods.FargowiltasCrossmod.EModeBalance.PickPowerDownGeneric").Format(41)));
