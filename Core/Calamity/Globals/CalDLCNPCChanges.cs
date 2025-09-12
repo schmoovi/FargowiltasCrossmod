@@ -101,6 +101,10 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using static FargowiltasSouls.Core.Globals.EModeFirstKillDrop;
+using FargowiltasSouls.Core.Globals;
+using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.LunarEvents;
+using FargowiltasSouls.Content.Projectiles.Eternity.Bosses.LunaticCultist;
+using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.LunarEvents.Solar;
 
 namespace FargowiltasCrossmod.Core.Calamity.Globals
 {
@@ -1563,6 +1567,21 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 {
                     ModCompatibility.Calamity.Mod.Call("SetDefenseDamageNPC", npc, true);
                 }
+            }
+
+            if (npc.type == NPCID.LunarTowerVortex || npc.type == NPCID.LunarTowerNebula || npc.type == NPCID.LunarTowerStardust)
+            {
+                int AuraSize = 5000;
+                if (npc.dontTakeDamage && npc.life > npc.lifeMax / 2)
+                    AuraSize = 5000;
+                else if (!npc.dontTakeDamage)
+                {
+                    if (AuraSize > 1500) AuraSize -= 40;
+                    else AuraSize = 1500;
+                }
+                int AuraDust = npc.type == NPCID.LunarTowerVortex ? 229 : npc.type == NPCID.LunarTowerNebula ? 58 : 20;
+
+                EModeGlobalNPC.Aura(npc, AuraSize, BuffType<RevealedBuff>(), dustid: AuraDust);
             }
 
             #endregion

@@ -55,6 +55,11 @@ Buffs: {
 		Description: Defense, damage reduction, and life regen reduced; Moon Leech effect; reduced graze radius
 		DisplayName: Calamitous Presence
 	}
+
+	RevealedBuff: {
+		DisplayName: Revealed Buff
+		Description: Your rogue stealth and throwing velocity have been busted
+	}
 }
 
 ExpandedTooltips: {
