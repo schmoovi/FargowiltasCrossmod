@@ -90,16 +90,6 @@ namespace FargowiltasCrossmod.Core.Calamity.Globals
                 projectile.hostile = false;
                 projectile.friendly = true;
             }
-
-            if (projectile.type == ModContent.ProjectileType<SlimeBall>() && !Main.player.Any(p => p.active && p.FargoSouls() != null && p.FargoSouls().SupremeDeathbringerFairy))
-            {
-                if (projectile.ModProjectile != null)
-                {
-                    typeof(SlimeBall).GetField("oil", LumUtils.UniversalBindingFlags).SetValue(projectile.ModProjectile, false);
-                }
-            }
-            
-
         }
         public bool Ricoshot = false;
         [JITWhenModsEnabled(ModCompatibility.Calamity.Name)]

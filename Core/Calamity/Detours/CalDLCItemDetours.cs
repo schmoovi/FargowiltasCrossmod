@@ -116,15 +116,9 @@ namespace FargowiltasCrossmod.Core.Calamity.Detours
         {
             float value = orig(npc, modPlayer);
 
-            value = 1.5f;
-            if (modPlayer.Player.ForceEffect<OrichalcumEffect>())
-            {
-                value = 2f;
-            }
+            //value = modPlayer.Player.ForceEffect<OrichalcumEffect>() ? 2f : 1.5f;
             if (npc.Calamity().shellfishVore > 0)
-            {
                 value = ((value - 1) / 2) + 1; // halved bonus
-            }
             return value;
         }
 

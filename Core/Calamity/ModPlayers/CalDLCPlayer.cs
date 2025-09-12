@@ -165,10 +165,6 @@ namespace FargowiltasCrossmod.Core.Calamity.ModPlayers
                 effectsPlayer.EffectItems[adamEffect.Index] = null;
 
             }
-            if (Player.HasEffect<TinEffect>())
-            {
-                calamityPlayer.spiritOrigin = false;
-            }
 
             if (soulsPlayer.FlightMasterySoul)
                 calamityPlayer.infiniteFlight = true;
